@@ -1,9 +1,27 @@
 // import logo from './logo.svg';
-import { onNavigate } from './lib/onNavigate.js';
+import React/* , { useState, useEffect } */ from 'react'
+import { /* Link,  */Route, Routes/* , useNavigate */ } from 'react-router-dom'
+import Login from './components/login.js';
+import Menu from './components/menu.js';
+// import { onNavigate } from './lib/onNavigate.js';
 import './App.css';
 
 function App() {
-  onNavigate('/');
+  /* const navigate = useNavigate()
+  useEffect(() => {
+    if (localStorage.getItem('user-info')) {
+      navigate('/menu')
+    }
+  }, []) */
+  return (
+    <>
+      <Routes>  
+        <Route path="/" element={<Login />} />
+        <Route path="/menu" element={<Menu />} />
+      </Routes>
+    </>
+  )
+  // onNavigate('/');
   /* return (
     <div className="App">
       <header className="App-header">

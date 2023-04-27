@@ -1,17 +1,58 @@
 // import logo from '../logo.svg';
 // import { onNavigate } from './lib/onNavigate.js';
-import './styles/login.css';
+import /* React,  */{ useState, useEffect } from 'react'
+import { /* Navigate,  */useNavigate } from "react-router-dom"
+import './styles.css';
 
 function Login() {
   // onNavigate('/');
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const navigate = useNavigate()
+  /* useEffect(() => {
+    if (localStorage.getItem('user-info')) {
+      navigate('/menu')
+    }
+  }, []) */
+  async function login() {
+    let item = {email, password}
+    console.log(item)
+    let result = await fetch('http://localhost:8080/login', {
+      method: 'POST', 
+      headers: {
+        "content-type": "application/json"/* ,
+        "accept": "application/json" */
+      },
+      body: JSON.stringify(item)
+    })
+    result = await result.json()
+    // console.log("typeof result:", typeof result)
+    // console.log("result:", result)
+    // console.log("JSON.stringify(item):", JSON.stringify(item))
+    localStorage.setItem("user-info", JSON.stringify(result))
+    // navigate("/menu")
+    // console.log("typeof localStorage.getItem('user-info'): ", typeof localStorage.getItem('user-info'))
+    // console.log("localStorage.getItem('user-info'):", localStorage.getItem('user-info'))
+    if (typeof result === 'object') {
+      navigate('/menu')
+    }
+  }
   return (
     <main className="PantallaInicio">
       <section className="cajaInicio">
         <img src={require('./img/img_libro_rojo.png')} alt="Imagen de libro"></img>
-        <input type="text" placeholder=" E-mail" id="inputEmail"></input>
+        <input
+          type="text"
+          placeholder=" E-mail"
+          onChange={(e) => setEmail(e.target.value)}
+        ></input>
         <p id="textoCorreoInvalido" className="textoCorreoInvalido">Escribe un correo valido</p>
-        <input type="password" placeholder=" Password" id="inputPassword"></input>
-        <button id="botonInicio">Ingresar</button>
+        <input
+          type="password"
+          placeholder=" Password"
+          onChange={(e) => setPassword(e.target.value)}
+        ></input>
+        <button onClick={login} className="botonInicio">Log-in</button>
       </section>
     </main>
   )
