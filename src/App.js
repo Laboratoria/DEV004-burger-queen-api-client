@@ -1,8 +1,10 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
+import { onNavigate } from './lib/onNavigate.js';
 import './App.css';
 
 function App() {
-  return (
+  onNavigate('/');
+  /* return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
@@ -15,11 +17,11 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          Learn React today!
         </a>
       </header>
     </div>
-  );
+  ); */
 }
 
 export default App;
