@@ -1,10 +1,12 @@
 // import logo from './logo.svg';
 import React/* , { useState, useEffect } */ from 'react'
-import { /* Link,  */Route, Routes/* , useNavigate */ } from 'react-router-dom'
+// import { /* Link,  */Route, Routes, Router/* , useNavigate */ } from 'react-router-dom'
+import {/*  BrowserRouter as Router,  */Routes, Route } from 'react-router-dom'
 import Login from './components/login.js';
 import Menu from './components/menu.js';
 // import { onNavigate } from './lib/onNavigate.js';
-import './App.css';
+// import './App.css';
+import PrivateRoutes from './scripts/privateRoutes.js'
 
 function App() {
   /* const navigate = useNavigate()
@@ -14,12 +16,15 @@ function App() {
     }
   }, []) */
   return (
-    <>
-      <Routes>  
-        <Route path="/" element={<Login />} />
-        <Route path="/menu" element={<Menu />} />
-      </Routes>
-    </>
+      <>
+        <Routes>
+          <Route element={<PrivateRoutes />}>
+            <Route element={<Menu />} path="/menu" exact />
+            <Route element={<Menu />} path="/" exact />
+          </Route>
+          <Route element={<Login />} path="/login" />
+        </Routes>
+      </>
   )
   // onNavigate('/');
   /* return (

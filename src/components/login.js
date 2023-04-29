@@ -1,12 +1,13 @@
 // import logo from '../logo.svg';
 // import { onNavigate } from './lib/onNavigate.js';
-import React, { useState/* , useEffect */ } from 'react'
+import React, { useState, useEffect } from 'react'
 import { /* Navigate,  */useNavigate } from "react-router-dom"
 import './styles.css';
 // import { getElementError } from '@testing-library/react'
 // import ReactDOM from "react-dom"
 
 function Login() {
+  
   /* const Results = () => (
     <div>
       <p
@@ -19,21 +20,24 @@ function Login() {
   // onNavigate('/');
   // const showError = React.useState(false)
   const [error, setError] = useState(false)
-  const [email, setEmail] = useState('')  
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const navigate = useNavigate()
   const [errorText, setErrorText] = useState("Error");
-  
-  /* useEffect(() => {
-    if (localStorage.getItem('user-info')) {
+  // console.log(localStorage.getItem("user-info").length)
+  const navigate = useNavigate()
+  /* if (localStorage.getItem("user-info").length > '200') {
+    navigate('/menu')
+  } */
+  useEffect(() => {
+    if (localStorage.getItem('user-info') > '200') {
       navigate('/menu')
     }
-  }, []) */
-  
+  })
+
 
   async function login() {
 
-      
+
 
 
     let item = { email, password }
