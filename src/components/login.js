@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import { /* Navigate,  */useNavigate } from "react-router-dom"
 import './styles.css';
+import { signIn } from '../scripts/signIn';
 // import { getElementError } from '@testing-library/react'
 // import ReactDOM from "react-dom"
 
@@ -25,65 +26,27 @@ function Login() {
   const [errorText, setErrorText] = useState("Error");
   // console.log(localStorage.getItem("user-info").length)
   const navigate = useNavigate()
-  /* if (localStorage.getItem("user-info").length > '200') {
-    navigate('/menu')
-  } */
+
   useEffect(() => {
     if (localStorage.getItem('user-info') > '200') {
       navigate('/menu')
     }
   })
 
-
   async function login() {
-
-
-
-
     let item = { email, password }
-    // console.log(item)
-    let result = await fetch('http://localhost:8080/login', {
-      method: 'POST',
-      headers: {
-        "content-type": "application/json"/* ,
-        "accept": "application/json" */
-      },
-      body: JSON.stringify(item)
-    })
+    const result = await signIn(item)
     // console.log(result)
-    result = await result.json()
-    // console.log("typeof result:", typeof result)
-    console.log("result:", result)
-    // console.log("JSON.stringify(item):", JSON.stringify(item))
-    localStorage.setItem("user-info", JSON.stringify(result))
-    // navigate("/menu")
-    // console.log("typeof localStorage.getItem('user-info'): ", typeof localStorage.getItem('user-info'))
-    // console.log("localStorage.getItem('user-info'):", localStorage.getItem('user-info'))
+    // console.log('accessToken: ', result['accessToken'])
 
     if (typeof result === 'object') {
       navigate('/menu')
     } else {
       setErrorText(result)
       // this.setState({ text: 'result' });
-      /* if (result === 'Email and password are required') {
-        document.getElementById('textoCorreoInvalido').innerText(result)
-      }
-      if (result === 'Email format is invalid') {
-        console.log("result:", result)
-      }
-      if (result === 'Password is too short') {
-        console.log("result:", result)
-      }
-      if (result === 'Cannot find user') {
-        console.log("result:", result)
-      }
-      if (result === 'Incorrect password') {
-        console.log("result:", result)
-      } */
     }
-
-    // ReactDOM.render(<Login />, document.querySelector("#container"))
   }
+
   return (
     <main className="PantallaInicio">
       <section className="cajaInicio">
