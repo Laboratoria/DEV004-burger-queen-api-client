@@ -12,6 +12,7 @@ export async function signIn(item) {
   // console.log("typeof result:", typeof result)
   // console.log("result:", result)
   // console.log("JSON.stringify(item):", JSON.stringify(item))
+  localStorage.setItem("accessToken", result['accessToken'])
   localStorage.setItem("user-info", JSON.stringify(result))
   // navigate("/menu")
   // console.log("typeof localStorage.getItem('user-info'): ", typeof localStorage.getItem('user-info'))
