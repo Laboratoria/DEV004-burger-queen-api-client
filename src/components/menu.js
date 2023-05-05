@@ -65,12 +65,37 @@ function Menu() {
       }/* ,
       body: JSON.stringify(body) */
     })
-    console.log(result)
+    /* .then(response => {
+      return response.json()
+    })
+    .then(response => {
+      console.log(response)
+      this.setState({pokemon: response})
+    }) */    
     result = await result.json()
     // console.log(localStorage.getItem("accessToken"))
-    // console.log(result)
+    /* console.log(result[0])
+    console.log(result[1])
+    console.log(result[2]) */
     // localStorage.setItem(`Order ${result["id"]}`, JSON.stringify(result))
-    setResultText("Result: " + result)
+    let resultTextLoop = ''
+    result.forEach(element => {
+      console.log(element)
+      // console.log(`${element['name']}\n`)
+      resultTextLoop += `
+      <li class = "${pokemonDB[i].type[0]}" id= poketype>
+        <img class = "card-image" src ="${pokemonDB[i].img}"/>
+        <h2 class = "card-title">${pokemonDB[i].num}
+        <br>${pokemonDB[i].name}</h2>
+          <p class = "card-subtitle">
+            <div class="${pokemonDB[i].type[0]}Text">${pokemonDB[i].type[0]}</div><br><br>
+            <div class="${pokemonDB[i].type[1]}Text">${pokemonDB[i].type[1]}</div>
+          </p>
+      </li>
+      `
+    });
+    console.log(resultTextLoop)
+    setResultText("Result: " + resultTextLoop)
   }
 
   return (
