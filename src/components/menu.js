@@ -8,7 +8,8 @@ function Menu() {
   const [client, setClient] = useState('')
   const [item, addCart] = useState(0)
   const [resulText, setResultText] = useState("Result:");
-  
+  const [results, setResults] = useState()
+
 
   let body = {
     "client": client,
@@ -45,7 +46,7 @@ function Menu() {
       method: 'POST',
       headers: {
         "content-type": "application/json",
-        "authorization": "Bearer "+localStorage.getItem("accessToken")
+        "authorization": "Bearer " + localStorage.getItem("accessToken")
       },
       body: JSON.stringify(body)
     })
@@ -56,47 +57,78 @@ function Menu() {
     setResultText("Result: " + new Date().toLocaleString())
   }
 
-  async function get() {
-    let result = await fetch('http://localhost:8080/products', {
-      method: 'GET',
-      headers: {
-        "content-type": "application/json",
-        "authorization": "Bearer "+localStorage.getItem("accessToken")
-      }/* ,
+  // let results = []
+
+  // results = async () => {
+  // async function get() {
+  //   let result = await fetch('http://localhost:8080/products', {
+  //     method: 'GET',
+  //     headers: {
+  //       "content-type": "application/json",
+  //       "authorization": "Bearer " + localStorage.getItem("accessToken")
+  //     }/* ,
+  //     body: JSON.stringify(body) */
+  //   })
+  //   let results = await result.json()
+  //   console.log("results", results)
+  //   // return results
+  //   results.map(e =>
+  //   (<section className="cajaInicio">
+  //     <img src={e['image']} alt="Imagen de libro"></img>
+  //     <button onClick={() => { addCart(); setResultText() }} className="botonInicio">GET</button>
+  //     <p id="textoCorreoInvalido" className="textoCorreoInvalido">{resulText}</p>
+  //   </section>)
+  //   )
+  // }
+
+  useEffect(() => {
+    // fetch data
+    const resultsFetch = async () => {
+      let result = await (fetch('http://localhost:8080/products', {
+        method: 'GET',
+        headers: {
+          "content-type": "application/json",
+          "authorization": "Bearer " + localStorage.getItem("accessToken")
+        }/* ,
       body: JSON.stringify(body) */
-    })
-    /* .then(response => {
-      return response.json()
-    })
-    .then(response => {
-      console.log(response)
-      this.setState({pokemon: response})
-    }) */    
-    result = await result.json()
-    // console.log(localStorage.getItem("accessToken"))
-    /* console.log(result[0])
-    console.log(result[1])
-    console.log(result[2]) */
-    // localStorage.setItem(`Order ${result["id"]}`, JSON.stringify(result))
-    let resultTextLoop = ''
-    result.forEach(element => {
-      console.log(element)
-      // console.log(`${element['name']}\n`)
-      resultTextLoop += `
-      <li class = "${pokemonDB[i].type[0]}" id= poketype>
-        <img class = "card-image" src ="${pokemonDB[i].img}"/>
-        <h2 class = "card-title">${pokemonDB[i].num}
-        <br>${pokemonDB[i].name}</h2>
-          <p class = "card-subtitle">
-            <div class="${pokemonDB[i].type[0]}Text">${pokemonDB[i].type[0]}</div><br><br>
-            <div class="${pokemonDB[i].type[1]}Text">${pokemonDB[i].type[1]}</div>
-          </p>
-      </li>
-      `
-    });
-    console.log(resultTextLoop)
-    setResultText("Result: " + resultTextLoop)
-  }
+      }))
+      let results = await result.json()
+      console.log("results", results)
+
+      // set state when the data received
+      setResults(results);
+    };
+
+    resultsFetch();
+  }, []);
+
+  // return result 
+  // console.log(localStorage.getItem("accessToken"))
+  // localStorage.setItem(`Order ${result["id"]}`, JSON.stringify(result))
+  // let resultTextLoop = ''
+  // console.log("results: ", results)
+  // let resultComponents = []
+  // await results.forEach((e, index) => {
+  //   // console.log(e['image'])
+  //   // console.log(`${element['name']}\n`)
+  //   resultComponents.push
+  //     (<section key={index} className="cajaInicio">
+  //       <p id="textoCorreoInvalido" className="textoCorreoInvalido">{e['name']}</p>
+  //       {/* <img src={require(`${e['image']}`)} alt="Imagen de libro"></img> */}
+  //       {/* <p id="textoCorreoInvalido" className="textoCorreoInvalido">Pantalla de menu</p> */}
+  //       {/* <input type="password" placeholder=" Pantalla de menu" className="inputPassword"></input> */}
+  //       <button onClick={() => { addCart();/*  get() */; setResultText() }} className="botonInicio">GET</button>
+  //       <p id="textoCorreoInvalido" className="textoCorreoInvalido">{resulText}</p>
+  //     </section>)
+  // });
+  // console.log(resultComponents)
+  // setResultText("Result: " + resultTextLoop)
+  // }
+
+  // get()
+
+  // console.log("results", results)
+
 
   return (
     <main className="PantallaInicio">
@@ -111,35 +143,21 @@ function Menu() {
 
         {/* <p id="textoCorreoInvalido" className="textoCorreoInvalido">Pantalla de menu</p> */}
         {/* <input type="password" placeholder=" Pantalla de menu" className="inputPassword"></input> */}
-        <button onClick={() => { addCart(); get(); setResultText() }} className="botonInicio">GET</button>
+        <button onClick={() => { addCart();/*  get(); */ setResultText() }} className="botonInicio">GET</button>
+        {/* <button onClick={() => {setResult(true)}} className="botonInicio">setResult</button> */}
         <p id="textoCorreoInvalido" className="textoCorreoInvalido">{resulText}</p>
       </section>
+
+      {results.map(e =>
+      (<section className="cajaInicio">
+        <img src={e['image']} alt="Imagen de libro"></img>
+        <button onClick={() => { addCart(); setResultText() }} className="botonInicio">GET</button>
+        <p id="textoCorreoInvalido" className="textoCorreoInvalido">{resulText}</p>
+      </section>)
+      )}
+
     </main>
   )
 }
 
 export default Menu
-
-
-
-/* export const login = () => {
-  const root = document.getElementById('pantallaMostrada');
-  root.innerHTML = `
-  <div id="publicacion">
-    <header class="cabecera">
-      <div class="lateral"></div>
-      <section class="miLogo">
-        <img src="./img/img_libro_rojo.png" alt="imagen libro">
-        <h1>LEEME</h1>
-      </section>
-      <img class="lateral" src="./img/imgPerfil.png" alt="imagen perfil">
-    </header>
-    <main class="mainPublicacion" id="miPublicacion">
-      <button class="botonPublicacion" id="nuevaPublicacion">NUEVA PUBLICACION</button>
-      <section id="publicaciones">
-        <img src="./img/cargando.gif" alt="imagen cargando">
-      </section>
-    </main>
-  `;
-};
-*/
