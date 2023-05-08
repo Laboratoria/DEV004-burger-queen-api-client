@@ -7,6 +7,7 @@ import Menu from './components/menu.js';
 // import { onNavigate } from './lib/onNavigate.js';
 // import './App.css';
 import PrivateRoutes from './scripts/privateRoutes.js'
+// import Product from './components/product.js';
 
 function App() {
   /* const navigate = useNavigate()
