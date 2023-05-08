@@ -2,14 +2,28 @@ import React, { useState, useEffect } from 'react'
 // import logo from '../logo.svg';
 // import { onNavigate } from './lib/onNavigate.js';
 import './styles.css'
+import { click } from '@testing-library/user-event/dist/click';
 
 function Menu() {
 
   const [client, setClient] = useState('')
-  const [item, addCart] = useState(0)
   const [resulText, setResultText] = useState("Result:");
+
   const [results, setResults] = useState()
 
+  let [counter, setCounter] = useState(0)
+  // const addCart = () => setCounter(counter + 1)
+  // let removeCart = () => setCounter(counter - 1)
+
+  if (counter < 0) {
+    setCounter(0);
+  }
+
+  /* document.getElementById(`counter${index}`).addEventListener('click', setCounter)
+
+  function setCounter(index) {
+    
+  } */
 
   let body = {
     "client": client,
@@ -57,30 +71,6 @@ function Menu() {
     setResultText("Result: " + new Date().toLocaleString())
   }
 
-  // let results = []
-
-  // results = async () => {
-  // async function get() {
-  //   let result = await fetch('http://localhost:8080/products', {
-  //     method: 'GET',
-  //     headers: {
-  //       "content-type": "application/json",
-  //       "authorization": "Bearer " + localStorage.getItem("accessToken")
-  //     }/* ,
-  //     body: JSON.stringify(body) */
-  //   })
-  //   let results = await result.json()
-  //   console.log("results", results)
-  //   // return results
-  //   results.map(e =>
-  //   (<section className="cajaInicio">
-  //     <img src={e['image']} alt="Imagen de libro"></img>
-  //     <button onClick={() => { addCart(); setResultText() }} className="botonInicio">GET</button>
-  //     <p id="textoCorreoInvalido" className="textoCorreoInvalido">{resulText}</p>
-  //   </section>)
-  //   )
-  // }
-
   useEffect(() => {
     // fetch data
     const resultsFetch = async () => {
@@ -93,42 +83,14 @@ function Menu() {
       body: JSON.stringify(body) */
       }))
       let results = await result.json()
-      console.log("results", results)
-
+      // console.log("results", results)
       // set state when the data received
       setResults(results);
-    };
-
-    resultsFetch();
+    }
+    resultsFetch()
+    // console.log("results", results)
   }, []);
-
-  // return result 
-  // console.log(localStorage.getItem("accessToken"))
-  // localStorage.setItem(`Order ${result["id"]}`, JSON.stringify(result))
-  // let resultTextLoop = ''
-  // console.log("results: ", results)
-  // let resultComponents = []
-  // await results.forEach((e, index) => {
-  //   // console.log(e['image'])
-  //   // console.log(`${element['name']}\n`)
-  //   resultComponents.push
-  //     (<section key={index} className="cajaInicio">
-  //       <p id="textoCorreoInvalido" className="textoCorreoInvalido">{e['name']}</p>
-  //       {/* <img src={require(`${e['image']}`)} alt="Imagen de libro"></img> */}
-  //       {/* <p id="textoCorreoInvalido" className="textoCorreoInvalido">Pantalla de menu</p> */}
-  //       {/* <input type="password" placeholder=" Pantalla de menu" className="inputPassword"></input> */}
-  //       <button onClick={() => { addCart();/*  get() */; setResultText() }} className="botonInicio">GET</button>
-  //       <p id="textoCorreoInvalido" className="textoCorreoInvalido">{resulText}</p>
-  //     </section>)
-  // });
-  // console.log(resultComponents)
-  // setResultText("Result: " + resultTextLoop)
-  // }
-
-  // get()
-
   // console.log("results", results)
-
 
   return (
     <main className="PantallaInicio">
@@ -143,16 +105,22 @@ function Menu() {
 
         {/* <p id="textoCorreoInvalido" className="textoCorreoInvalido">Pantalla de menu</p> */}
         {/* <input type="password" placeholder=" Pantalla de menu" className="inputPassword"></input> */}
-        <button onClick={() => { addCart();/*  get(); */ setResultText() }} className="botonInicio">GET</button>
+        <button onClick={() => setResultText()} className="botonInicio">setResultText</button>
         {/* <button onClick={() => {setResult(true)}} className="botonInicio">setResult</button> */}
         <p id="textoCorreoInvalido" className="textoCorreoInvalido">{resulText}</p>
       </section>
 
-      {results.map(e =>
+      {results && results.map((e, index) =>
       (<section className="cajaInicio">
-        <img src={e['image']} alt="Imagen de libro"></img>
-        <button onClick={() => { addCart(); setResultText() }} className="botonInicio">GET</button>
-        <p id="textoCorreoInvalido" className="textoCorreoInvalido">{resulText}</p>
+        <img src={e['image']} alt={e['name']}></img>
+        <p id="textoCorreoInvalido" className="textoCorreoInvalido">{e['name']}</p>
+        <p id="textoCorreoInvalido" className="textoCorreoInvalido">{e['price']}</p>
+        <div className="amountBox">
+          <p id={index} onClick={() => {setCounter(counter - 1); console.log(index)}}>{'<'}</p>
+          <p id={`counter${index}`}>{counter}</p>
+          <p id={index} onClick={() => {setCounter(counter + 1); console.log(index)}}>{'>'}</p>
+        </div>
+        {/* <button onClick={setResultText()} className="botonInicio">setResultText</button> */}
       </section>)
       )}
 
