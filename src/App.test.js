@@ -68,7 +68,7 @@ describe('Login', () => {
   })
 })
 
-describe.only('Post Order', () => {
+describe('Post Order', () => {
   test('Successful Order', async () => {
     const email = "grace.hopper@systers.xyz"
     const password = "123456"
