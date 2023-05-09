@@ -3,6 +3,7 @@ import { MemoryRouter } from "react-router-dom"
 // import App from './App';
 import Login from './components/login.js';
 import { signIn } from './scripts/signIn';
+import { postOrder } from './scripts/postOrder.js';
 
 describe('render routes', () => {
   test('login', () => {
@@ -64,5 +65,45 @@ describe('Login', () => {
     console.log("result: "+result)
     // console.log("result['accessToken']: "+result['accessToken'])
     expect(result === 'Email and password are required').toBe(true)
+  })
+})
+
+describe.only('Post Order', () => {
+  test('Successful Order', async () => {
+    const email = "grace.hopper@systers.xyz"
+    const password = "123456"
+    const item = { email, password }
+    let result = await signIn(item)
+    // console.log(result)
+    const body = {
+      "client": "Jean",
+      "products": [
+        [
+          {
+            "id": 2,
+            "name": "Café americano",
+            "price": 500,
+            "image": "https://raw.githubusercontent.com/ssinuco/burger-queen-api-mock/main/resources/images/coffee.png",
+            "type": "Desayuno",
+            "dateEntry": "2022-03-05 15:14:10"
+          }
+        ]
+      ],
+      "status": "pending",
+      "dataEntry": new Date().toLocaleString()
+    }
+    // console.log(result['accessToken'])
+    // console.log(localStorage.getItem("accessToken"))
+    const accessToken = result['accessToken']
+    // console.log(accessToken)
+    // console.log('result[0]: '+result[0])
+    // console.log('result["accessToken"]: '+result['accessToken'].length)
+    // expect(result.length > '200').toBe(true)
+    // console.log(body)
+    // console.log(accessToken)
+    result = await postOrder(body, accessToken)
+    // console.log(result)
+    // Object.keys(exampleObject).length
+    expect(Object.keys(result).length).toBe(5)
   })
 })

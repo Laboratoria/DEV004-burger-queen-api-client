@@ -56,11 +56,11 @@ function Login() {
 
         <input
           type="password"
-          placeholder=" Password"
+          placeholder=" Contraseña"
           onChange={(e) => setPassword(e.target.value)}
         ></input>
 
-        <button onClick={() => { setError(true); setErrorText(); login() }} className="botonInicio">Log-in</button>
+        <button onClick={() => { setError(true); setErrorText(); login() }} className="checkoutBoxButtons">Ingresar</button>
       </section>
     </main>
   )

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { postOrder } from '../scripts/postOrder';
 
 function Product() {
 
@@ -16,7 +17,7 @@ function Product() {
     "dataEntry": new Date().toLocaleString()
   }
 
-  async function postOrder() {
+  /* async function postOrder() {
     let result = await fetch('http://localhost:8080/orders', {
       method: 'POST',
       headers: {
@@ -30,7 +31,7 @@ function Product() {
     // console.log(result)
     localStorage.setItem(`Order ${result["id"]}`, JSON.stringify(result))
     // setResultText("Result: " + new Date().toLocaleString())
-  }
+  } */
 
   useEffect(() => {
     // fetch data
@@ -114,7 +115,7 @@ function Product() {
           {/* <p>{cart.reduce((a, b) => a + b.price, 0)}$</p> */}
           <button
             className="checkoutBoxButtons"
-            onClick={() => { postOrder(); console.log(body) }}
+            onClick={() => {postOrder(body, localStorage.getItem("accessToken"))}}
           >Enviar a cocina</button>
 
         </div>
