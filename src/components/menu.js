@@ -6,11 +6,11 @@ function Product() {
   // let [counter, setCounter] = useState(0)
   // const addCart = () => setCounter(counter + 1)
   // let removeCart = () => setCounter(counter - 1)
-  const [client, setClient] = useState('')
+  const [client, setClient] = useState('')  
   const [results, setResults] = useState()
   const [cart, addToCart] = useState([]);
 
-  const body = {
+  const body = { // body will be used by postOrder
     "client": client,
     "products": [cart],
     "status": "pending",
@@ -33,7 +33,7 @@ function Product() {
     // setResultText("Result: " + new Date().toLocaleString())
   } */
 
-  useEffect(() => {
+  useEffect(() => {  // getting info from database
     // fetch data
     const resultsFetch = async () => {
       let result = await (fetch('http://localhost:8080/products', {
@@ -57,7 +57,7 @@ function Product() {
   return (
     <main className="PantallaInicio">
 
-      {results && results.map((e, index) => {
+      {results && results.map((e, index) => { // renders products
         return (
           // results && results.map((e, index) => (
           <section className="cajaInicio">
@@ -70,7 +70,7 @@ function Product() {
 
               <button
                 onClick={() => { addToCart([...cart, e]); console.log(index) }}
-                className="botonInicio"
+                className="checkoutBoxButtons"
               >Agrega al carrito</button>
 
             </div>
@@ -78,18 +78,19 @@ function Product() {
         )
       })}
 
-      <section className="cartBox">
+      <section className="cartBox">  {/* checkout cart box */}
         <div className="cart-list">
 
-          <h1>Cliente:</h1>
+          <h1>Cliente:</h1> {/* getting client name */}
           <input
             type="text"
-            placeholder=" Nombre"
+            placeholder="Nombre"
+            className="inputBox"
             onChange={(e) => setClient(e.target.value)}
           ></input>
           <br></br><br></br>
 
-          <h1>Carrito:</h1><br></br>
+          <h1>Carrito:</h1><br></br>  {/* rendering products inside the cart */}
           {/* cart items */}
           {cart.map((item, index) => {
             return (
@@ -101,8 +102,8 @@ function Product() {
                   onClick={(e) => {
                     // remove item from cart
                     cart.splice(index, 1);
-                    let x = cart;
-                    addToCart([...x]);
+                    /* let x = cart; */
+                    addToCart([...cart]);
                   }}
                 >Quitar del carrito</button>
                 <br></br><br></br>
@@ -111,7 +112,7 @@ function Product() {
           })}
           <br></br>
 
-          <h1>Total: {cart.reduce((a, b) => a + b.price, 0)}</h1><br></br>
+          <h1>Total: {cart.reduce((a, b) => a + b.price, 0)}</h1><br></br>  {/* price total */}
           {/* <p>{cart.reduce((a, b) => a + b.price, 0)}$</p> */}
           <button
             className="checkoutBoxButtons"
@@ -122,9 +123,6 @@ function Product() {
       </section>
     </main>
   )
-
-
 }
-
 
 export default Product
