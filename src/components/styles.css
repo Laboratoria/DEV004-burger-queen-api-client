@@ -22,12 +22,8 @@ body {
   display: flex;
   align-items: center;
   font-family: 'Verdana', sans-serif;
-  background-size:cover;
-  background-position-x: center;
-}
-
-#inputNick {
-  display: none;
+  background-size: cover;
+  /* background-position-x: center; */
 }
 
 .cajaInicio {
@@ -40,7 +36,20 @@ body {
   justify-content: space-around;
   background-color: white;
   border-radius: 15px;
-  height: 250px;
+  height: 300px;
+}
+
+.cartBox {
+  padding: 20px 50px;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  margin: 0px auto;
+  align-items: center;
+  justify-content: space-around;
+  background-color: white;
+  border-radius: 15px;
+  height: auto;
 }
 
 .cajaInicio>img {
@@ -51,12 +60,22 @@ body {
   width: 100%;
 }
 
-.botonInicio{
-  width: 100%;
+/* .botonInicio{
+  width: 144px;
   background-color: #4D94FF;
   color: white;
   border: 0px;
-  height: 25px;
+  border-radius: 15px;
+  height: 45px;
+} */
+
+button {
+  width: 144px;
+  background-color: #4D94FF;
+  color: white;
+  border: 0px;
+  border-radius: 15px;
+  height: 45px;
 }
 
 .cajaInicio>input{
@@ -79,117 +98,13 @@ body {
   margin-bottom: -12px;
 }
 
-
-/* css de publicacion */
-.mainPublicacion{
-  padding: 10px 40px;
-  background-attachment: fixed;
-}
-
-#publicacion, #pantallaMostrada{
-  background-color: #FCF8E8;
-}
-
-.cabecera{
-  display: flex;
-  justify-content: space-between;
+input {
+  /* width: 144px; */
+  height: 44px;
+  /* margin: 5px; */
   padding: 10px;
-}
-
-.lateral{
-  width: 60px;
-  height: 60px;
-}
-
-.miLogo img{
-  width: 170px;
-  margin-top: 30px;
-  margin-bottom: 10px;
-}
-.miLogo{
-  text-align: center;
-  font-family: 'Keania One',cursive;
-  font-size: 15px;
-  color: rgb(75, 75, 75);
-}
-.botonPublicacion{
-  background-color: #B73E3E;
-  width: 100%;
-  height: 45px;
-  border: none;
-  border-radius: 40px;
-  color: white;
-  font-size: 18px;
-  margin-bottom: 30px;
-}
-
-.miPublicacion{
-  margin-bottom: 30px;
-  background-color: #EDDBC0;
-  padding: 20px;
-  font-size: 20px;
-  border-radius: 30px;
-  text-align:center;
-  font-family: 'Cabin', sans-serif;
-}
-
-/* estilos para crear publicacion */
-
-
-.miPublicacionCrear{
-  margin-bottom: 30px;
-  background-color: #EDDBC0;
-  padding: 20px;
-  font-size: 23px;
-  border-radius: 30px;
-  height: 40vh;
-  resize: none;
-  width: 100%;
-}
-.btns{
-  display: flex;
-  justify-content: space-around; 
-  padding-top: 40px;
-}
-.btn-eliminar, .botonEditar , .botonGuardar{
-  width: 90px;
-  height: 22px;
-  padding-top: 3px;
-  padding-left: 5px;
-  border-radius: 30px;
-  background-color: #DD5353;
-  text-align: center;
-}
-
-/* estilo para likes */
-.likes{
-  text-align: right;
-  padding-bottom: 30px;
-}
-
-.cabeceraPublicacion{
-  display: flex;
-  justify-content: space-between;
-}
-
-.cabeceraPublicacion > span{
-  font-style: italic;
-}
-
-
-/* para pantalla de tablet */
-@media (min-width: 600px){
-  .mainPublicacion{
-    width: 70%;
-    margin: auto;
-    text-align: center;
-  }
-}
-/* para pantalla de escritorio */
-@media (min-width: 850px){
-  .mainPublicacion{
-    width: 50%;
-    margin: auto;
-    text-align: center;
-  }
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
 }
