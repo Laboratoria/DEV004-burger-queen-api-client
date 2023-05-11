@@ -26,7 +26,7 @@ function Product() {
     }
     resultsFetch()
     // console.log("results", results)
-  });
+  }, []);
   // console.log("results", results)
 
   return (
