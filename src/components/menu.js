@@ -18,37 +18,10 @@ function Product() {
     "dataEntry": new Date().toLocaleString()
   }
 
-  /* async function postOrder() {
-    let result = await fetch('http://localhost:8080/orders', {
-      method: 'POST',
-      headers: {
-        "content-type": "application/json",
-        "authorization": "Bearer " + localStorage.getItem("accessToken")
-      },
-      body: JSON.stringify(body)
-    })
-    result = await result.json()
-    // console.log(localStorage.getItem("accessToken"))
-    // console.log(result)
-    localStorage.setItem(`Order ${result["id"]}`, JSON.stringify(result))
-    // setResultText("Result: " + new Date().toLocaleString())
-  } */
-
   useEffect(() => {  // getting info from database
     // fetch data
     const resultsFetch = async () => {
       const results = await database('products', 'GET', localStorage.getItem("accessToken"))
-      // let result = await (fetch('http://localhost:8080/products', {
-      //   method: 'GET',
-      //   headers: {
-      //     "content-type": "application/json",
-      //     "authorization": "Bearer " + localStorage.getItem("accessToken") // cambiar esto a su propia funcion
-      //   }/* ,
-      // body: JSON.stringify(body) */
-      // }))
-      // let results = await result.json()
-      // console.log("results", results)
-      // set state when the data received
       setResults(results);
     }
     resultsFetch()

@@ -18,18 +18,3 @@ export async function database(route, method, accessToken, body) {
   return result
   // setResultText("Result: " + new Date().toLocaleString())
 }
-
-// const resultsFetch = async () => {
-//   let result = await (fetch('http://localhost:8080/products', {
-//     method: 'GET',
-//     headers: {
-//       "content-type": "application/json",
-//       "authorization": "Bearer " + localStorage.getItem("accessToken") // cambiar esto a su propia funcion
-//     }/* ,
-//   body: JSON.stringify(body) */
-//   }))
-//   let results = await result.json()
-//   // console.log("results", results)
-//   // set state when the data received
-//   setResults(results);
-// }
