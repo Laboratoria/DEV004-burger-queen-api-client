@@ -6,11 +6,7 @@ import { database } from '../scripts/database';
 // import { getElementError } from '@testing-library/react'
 // import ReactDOM from "react-dom"
 
-function Products({cart, addToCart}/* { menuToProducts } */) {
-
-  /* useEffect(() => {
-    console.log(menuToProducts)
-  }, [menuToProducts]); */
+function Products({ cart, addToCart }) {
 
   const [results, setResults] = useState()
   // const [cart, addToCart] = useState([]);

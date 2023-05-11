@@ -6,7 +6,7 @@ import { database } from '../scripts/database';
 // import { getElementError } from '@testing-library/react'
 // import ReactDOM from "react-dom"
 
-function Cart({cart, addToCart}/* { menuToProducts } */) {
+function Cart({ cart, addToCart }/* { menuToProducts } */) {
 
   const [client, setClient] = useState('')
   // const [results, setResults] = useState()
@@ -21,7 +21,7 @@ function Cart({cart, addToCart}/* { menuToProducts } */) {
 
   return (
     <>
-     <section className="cartBox">  {/* checkout cart box */}
+      <section className="cartBox">  {/* checkout cart box */}
         <div className="cart-list">
 
           <h1>Cliente:</h1> {/* getting client name */}
