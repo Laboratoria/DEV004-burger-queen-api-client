@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import { postOrder } from '../scripts/postOrder';
+// import { postOrder } from '../scripts/postOrder';
+import { database } from '../scripts/database';
 
 function Product() {
 
   // let [counter, setCounter] = useState(0)
   // const addCart = () => setCounter(counter + 1)
   // let removeCart = () => setCounter(counter - 1)
-  const [client, setClient] = useState('')  
+  const [client, setClient] = useState('')
   const [results, setResults] = useState()
   const [cart, addToCart] = useState([]);
 
@@ -36,22 +37,23 @@ function Product() {
   useEffect(() => {  // getting info from database
     // fetch data
     const resultsFetch = async () => {
-      let result = await (fetch('http://localhost:8080/products', {
-        method: 'GET',
-        headers: {
-          "content-type": "application/json",
-          "authorization": "Bearer " + localStorage.getItem("accessToken")
-        }/* ,
-      body: JSON.stringify(body) */
-      }))
-      let results = await result.json()
+      const results = await database('products', 'GET', localStorage.getItem("accessToken"))
+      // let result = await (fetch('http://localhost:8080/products', {
+      //   method: 'GET',
+      //   headers: {
+      //     "content-type": "application/json",
+      //     "authorization": "Bearer " + localStorage.getItem("accessToken") // cambiar esto a su propia funcion
+      //   }/* ,
+      // body: JSON.stringify(body) */
+      // }))
+      // let results = await result.json()
       // console.log("results", results)
       // set state when the data received
       setResults(results);
     }
     resultsFetch()
     // console.log("results", results)
-  }, []);
+  });
   // console.log("results", results)
 
   return (
@@ -116,7 +118,7 @@ function Product() {
           {/* <p>{cart.reduce((a, b) => a + b.price, 0)}$</p> */}
           <button
             className="checkoutBoxButtons"
-            onClick={() => {postOrder(body, localStorage.getItem("accessToken"))}}
+            onClick={() => { database('orders', 'POST', localStorage.getItem("accessToken"), body) }}
           >Enviar a cocina</button>
 
         </div>

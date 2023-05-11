@@ -3,7 +3,8 @@
 import React, { useState, useEffect } from 'react'
 import { /* Navigate,  */useNavigate } from "react-router-dom"
 import './styles.css';
-import { signIn } from '../scripts/signIn';
+// import { signIn } from '../scripts/signIn';
+import { database } from '../scripts/database';
 // import { getElementError } from '@testing-library/react'
 // import ReactDOM from "react-dom"
 
@@ -24,8 +25,10 @@ function Login() {
   })
 
   async function login() {
-    let item = { email, password }
-    const result = await signIn(item)
+    let body = { email, password }
+    const result = await database('login', 'POST', null, body)
+    localStorage.setItem("accessToken", result['accessToken'])
+    localStorage.setItem("user-info", JSON.stringify(result))
     // console.log(result)
     // console.log('accessToken: ', result['accessToken'])
 

@@ -62,7 +62,7 @@ describe('Login', () => {
     // console.log('result[0]: '+result[0])
     // console.log('result["accessToken"]: '+result['accessToken'].length)
     // expect(result.length > '200').toBe(true)
-    console.log("result: "+result)
+    // console.log("result: "+result)
     // console.log("result['accessToken']: "+result['accessToken'])
     expect(result === 'Email and password are required').toBe(true)
   })
