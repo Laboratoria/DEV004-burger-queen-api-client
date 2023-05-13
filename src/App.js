@@ -4,6 +4,7 @@ import React/* , { useState, useEffect } */ from 'react'
 import {/*  BrowserRouter as Router,  */Routes, Route } from 'react-router-dom'
 import Login from './components/login.js';
 import Menu from './components/menu.js';
+import Kitchen from './components/kitchen.js';
 // import { onNavigate } from './lib/onNavigate.js';
 // import './App.css';
 import PrivateRoutes from './scripts/privateRoutes.js'
@@ -24,6 +25,7 @@ function App() {
             <Route element={<Menu />} path="/" exact />
           </Route>
           <Route element={<Login />} path="/login" />
+          <Route element={<Kitchen />} path="/kitchen" />
         </Routes>
       </>
   )
