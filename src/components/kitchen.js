@@ -26,14 +26,25 @@ function Kitchen() {
   return (
     <main className="PantallaInicio">
       {results && results.map((e, index) => { // renders products
-      console.log(e.id)
+        
+        // console.log(e.id)
         return (
           // results && results.map((e, index) => (
-          <section className="cajaInicio">
+          <section className="cartBox">
+            {e['products'].map((products, index) => {
+            console.log(products['product']['name'])
+            return (
+              <>
+                <img src={products['product']['image']} alt={products['product']['name']}></img>
+                <p id="" className="">{products['product']['name']}</p>
+              </>
+            )
+          })
+        }
             {/* <img src={e['image']} alt={e['name']}></img> */}
             <p
-            id="textoCorreoInvalido"
-            className="textoCorreoInvalido">
+              id=""
+              className="">
               ID: {e.id}<br></br>
               STATUS: {e['status']}<br></br>
               LOGGED: {e['dataEntry']}<br></br>
