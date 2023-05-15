@@ -5,7 +5,7 @@ import { database } from '../scripts/database';
 function Kitchen() {
 
   const [results, setResults] = useState()
-  const [order, orderReady] = useState([])
+  // const [order, orderReady] = useState([])
 
   const body = { // body will be used by postOrder
     "status": "delivered",

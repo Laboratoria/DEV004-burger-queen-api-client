@@ -9,8 +9,19 @@ import { database } from '../scripts/database';
 function Cart({ cart, addToCart }/* { menuToProducts } */) {
 
   const [client, setClient] = useState('')
+  // const [clientText, setClientText] = useState('')
   // const [results, setResults] = useState()
   // const [cart, addToCart] = useState([])
+  const [errorClient, setErrorClient] = useState(false)
+  // const [errorTextClient, setErrorTextClient] = useState("Error");
+  const [errorCart, setErrorCart] = useState(false)
+  // const [errorTextCart, setErrorTextCart] = useState("Error");
+  const [successfulOrder, setSuccessfulOrder] = useState(false);
+  // const [successfulOrderText, setSuccessfulOrderText] = useState("Error");
+  /* let error = false
+  let errorText = 'Error' */
+
+  // const navigate = useNavigate()
 
   const body = { // body will be used by postOrder
     "client": client,
@@ -20,11 +31,29 @@ function Cart({ cart, addToCart }/* { menuToProducts } */) {
   }
   function postOrder() {
     if (client === '') {
-      alert('Ingresa un nombre para el cliente')
-    } else if (cart.length === 0) {
-      alert('Añade productos al carrito antes de continuar')
-    } else {
+      setErrorClient(true)
+      // setErrorTextClient('Ingresa un nombre para el cliente')
+      // alert('Ingresa un nombre para el cliente')
+    }
+    if (cart.length === 0) {
+      setErrorCart(true)
+      // setErrorTextCart('Añade productos al carrito antes de continuar')
+      // alert('Añade productos al carrito antes de continuar')
+    }
+    if (client.length > 0 && cart.length > 0) {
       database('orders', 'POST', localStorage.getItem("accessToken"), body)
+      setErrorClient(false)
+      setErrorCart(false)
+      setSuccessfulOrder(true)
+      // setSuccessfulOrderText('Enviado a Cocina')
+      setTimeout(() => {
+        // navigate('/menu')
+        window.location.reload(false)
+        /* setSuccessfulOrder(false)
+        setClient('')
+        addToCart([]) */
+      }, "3000");
+      // alert('Enviado a la cocina')
     }
   }
 
@@ -39,8 +68,14 @@ function Cart({ cart, addToCart }/* { menuToProducts } */) {
             placeholder="Nombre"
             className="inputBox"
             onChange={(e) => setClient(e.target.value)}
-          ></input>
+          >{/* {clientText} */}</input>
           <br></br><br></br>
+
+          {errorClient && <p
+            id="textoCorreoInvalido"
+            className="textoCorreoInvalido"
+            style={{ visibility: errorClient ? 'visible' : 'hidden' }}
+          >Ingresa un nombre para el cliente<br></br><br></br></p>}
 
           <h1>Carrito:</h1><br></br>  {/* rendering products inside the cart */}
           {/* cart items */}
@@ -62,14 +97,26 @@ function Cart({ cart, addToCart }/* { menuToProducts } */) {
               </div>
             );
           })}
-          <br></br>
+
+
+          {errorCart && <p
+            id="textoCorreoInvalido"
+            className="textoCorreoInvalido"
+            style={{ visibility: errorCart ? 'visible' : 'hidden' }}
+          >Añade productos al carrito antes de continuar<br></br><br></br></p>}
 
           <h1>Total: {cart.reduce((a, b) => a + b.price, 0)}</h1><br></br>  {/* price total */}
           {/* <p>{cart.reduce((a, b) => a + b.price, 0)}$</p> */}
           <button
             className="checkoutBoxButtons"
-            onClick={() => { postOrder()/* database('orders', 'POST', localStorage.getItem("accessToken"), body) */ }}
+            onClick={() => { postOrder()/* ; setError() *//* database('orders', 'POST', localStorage.getItem("accessToken"), body) */ }}
           >Enviar a cocina</button>
+
+          {successfulOrder && <p
+            id="textoCorreoInvalido"
+            className="textoCorreoInvalido"
+            style={{ visibility: successfulOrder ? 'visible' : 'hidden' }}
+          ><br></br>Enviado a cocina<br></br><br></br></p>}
 
         </div>
       </section>
