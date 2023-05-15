@@ -18,6 +18,15 @@ function Cart({ cart, addToCart }/* { menuToProducts } */) {
     "status": "pending",
     "dataEntry": new Date().toLocaleString()
   }
+  function postOrder() {
+    if (client === '') {
+      alert('Ingresa un nombre para el cliente')
+    } else if (cart.length === 0) {
+      alert('Añade productos al carrito antes de continuar')
+    } else {
+      database('orders', 'POST', localStorage.getItem("accessToken"), body)
+    }
+  }
 
   return (
     <>
@@ -59,7 +68,7 @@ function Cart({ cart, addToCart }/* { menuToProducts } */) {
           {/* <p>{cart.reduce((a, b) => a + b.price, 0)}$</p> */}
           <button
             className="checkoutBoxButtons"
-            onClick={() => { database('orders', 'POST', localStorage.getItem("accessToken"), body) }}
+            onClick={() => { postOrder()/* database('orders', 'POST', localStorage.getItem("accessToken"), body) */ }}
           >Enviar a cocina</button>
 
         </div>

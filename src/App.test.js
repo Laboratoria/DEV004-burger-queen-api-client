@@ -38,6 +38,21 @@ describe('Login', () => {
     // expect(result.length > '200').toBe(true)
     expect(result['accessToken'].length > '150').toBe(true)
   }) */
+  test('Error', async () => {
+    render(<App />, { wrapper: BrowserRouter })
+
+    // const emailInput = screen.getByPlaceholderText(/E-mail/i)/* .value = 'grace.hopper@systers.xyz' */
+    // fireEvent.change(emailInput, { target: { value: 'hopper@systers.xyz' } })
+    // const passwordInput = screen.getByPlaceholderText(/Contraseña/i)/* .value = '123456' */
+    // fireEvent.change(passwordInput, { target: { value: '123456' } })
+
+    const button = screen.getByText(/Ingresar/i)
+    fireEvent.click(button)
+
+    await screen.findByText('Email and password are required')
+
+    expect(screen.getByText(/Email and password are required/i)).toBeInTheDocument()
+  })
 
   test('Successful login', async () => {
     // const getById = queryByAttribute.bind(null, 'id');
@@ -98,22 +113,22 @@ describe('Login', () => {
 
   // localStorage.setItem("user-info", '')
 
-  test('Error', async () => {
-    localStorage.setItem("user-info", '')
-    render(<App />, { wrapper: BrowserRouter })
+  // test('Error', async () => {
+  //   localStorage.setItem("user-info", '')
+  //   render(<App />, { wrapper: BrowserRouter })
 
-    // const emailInput = screen.getByPlaceholderText(/E-mail/i)/* .value = 'grace.hopper@systers.xyz' */
-    // fireEvent.change(emailInput, { target: { value: 'hopper@systers.xyz' } })
-    // const passwordInput = screen.getByPlaceholderText(/Contraseña/i)/* .value = '123456' */
-    // fireEvent.change(passwordInput, { target: { value: '123456' } })
+  //   // const emailInput = screen.getByPlaceholderText(/E-mail/i)/* .value = 'grace.hopper@systers.xyz' */
+  //   // fireEvent.change(emailInput, { target: { value: 'hopper@systers.xyz' } })
+  //   // const passwordInput = screen.getByPlaceholderText(/Contraseña/i)/* .value = '123456' */
+  //   // fireEvent.change(passwordInput, { target: { value: '123456' } })
 
-    const button = screen.getByText(/Ingresar/i)
-    fireEvent.click(button)
+  //   const button = screen.getByText(/Ingresar/i)
+  //   fireEvent.click(button)
 
-    await screen.findByText('Email and password are required')
+  //   await screen.findByText('Email and password are required')
 
-    expect(screen.getByText(/Email and password are required/i)).toBeInTheDocument()
-  })
+  //   expect(screen.getByText(/Email and password are required/i)).toBeInTheDocument()
+  // })
 
   /* test('Password is too short', async () => {
     const email = "grace.hopper@systers.xyz"
