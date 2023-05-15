@@ -38,7 +38,7 @@ function Products({ cart, addToCart }) {
               <button
                 onClick={() => { addToCart([...cart, e]); console.log(index) }}
                 className="checkoutBoxButtons"
-              >Agrega al carrito</button>
+              >Agregar al carrito</button>
 
             </div>
           </section>

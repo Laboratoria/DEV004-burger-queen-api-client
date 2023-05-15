@@ -24,7 +24,7 @@ function Login() {
     }
   })
 
-  async function login() {
+  async function signIn() {
     let body = { email, password }
     const result = await database('login', 'POST', null, body)
     localStorage.setItem("accessToken", result['accessToken'])
@@ -46,6 +46,7 @@ function Login() {
         <img src={require('./img/img_libro_rojo.png')} alt="Imagen de libro"></img>
 
         <input
+          // data-testid="emailInput"
           type="text"
           placeholder="E-mail"
           onChange={(e) => setEmail(e.target.value)}
@@ -58,12 +59,17 @@ function Login() {
         >{errorText}</p>}
 
         <input
+          // data-testid="passwordInput"
           type="password"
           placeholder="Contraseña"
           onChange={(e) => setPassword(e.target.value)}
         ></input>
 
-        <button onClick={() => { setError(true); setErrorText(); login() }} className="checkoutBoxButtons">Ingresar</button>
+        <button
+          // data-testid="signInButton"
+          onClick={() => { setError(true); setErrorText(); signIn() }}
+          className="checkoutBoxButtons"
+        >Ingresar</button>
       </section>
     </main>
   )
