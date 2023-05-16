@@ -27,7 +27,8 @@ function Cart({ cart, addToCart }/* { menuToProducts } */) {
     "client": client,
     "products": cart,
     "status": "pending",
-    "dataEntry": new Date().toLocaleString()
+    "dataEntry": new Date().toLocaleString(),
+    "dateProcessed": "not processed"
   }
 
   function postOrder() {
@@ -81,7 +82,7 @@ function Cart({ cart, addToCart }/* { menuToProducts } */) {
           <h1>Carrito:</h1><br></br>  {/* rendering products inside the cart */}
           {/* cart items */}
           {cart.map((item, index) => {
-            console.log(item)
+            //console.log(item)
             return (
               <div className="cart">
                 <h3>{item.product.name} x{item.qty}</h3>

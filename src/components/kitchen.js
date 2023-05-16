@@ -6,6 +6,8 @@ function Kitchen() {
 
   const [results, setResults] = useState()
   // const [order, orderReady] = useState([])
+  // const [readyText, setReadyText] = useState(false)
+  // const [noText, setNoText] = useState(true)
 
   const body = { // body will be used by postOrder
     "status": "delivered",
@@ -52,7 +54,10 @@ function Kitchen() {
               ID: {e.id}<br></br>
               STATUS: {e['status']}<br></br>
               LOGGED: {e['dataEntry']}<br></br>
-              READY: {e['dateProcessed']}</p><br></br>
+              {/* {readyText && <p
+                style={{ visibility: readyText ? 'visible' : 'hidden' }}
+              >READY: {e['dateProcessed']}<br></br></p>} */}
+              READY: {/* {noText && 'No'} */}{e['dateProcessed']}{/* {(e) => {readyText ? `${e['dateProcessed']}` : 'No'}} */}</p><br></br>
             {/* <p id="textoCorreoInvalido" className="textoCorreoInvalido">STATUS: {e['status']}</p> */}
             <div className="amountBox">
               {/* <p id={index} onClick={() => { setCounter(counter - 1); console.log(index) }}>{'<'}</p>
@@ -61,6 +66,9 @@ function Kitchen() {
               <button
                 onClick={() => {
                   database(`orders/${e.id}`, 'PATCH', localStorage.getItem("accessToken"), body)
+                  window.location.reload(false)
+                  // setNoText(false)
+                  // setReadyText(true)
                   // remove item from cart
                   // console.log(results)
                   // results.splice(index, 1);

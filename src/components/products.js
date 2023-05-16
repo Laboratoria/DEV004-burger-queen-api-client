@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-// import { /* Navigate,  */useNavigate } from "react-router-dom"
+import { /* Navigate,  */useNavigate } from "react-router-dom"
 import './styles.css';
 // import { signIn } from '../scripts/signIn';
 import { database } from '../scripts/database';
@@ -11,15 +11,22 @@ function Products({ cart, addToCart }) {
   const [results, setResults] = useState()
   // const [cart, addToCart] = useState([]);
 
+  const navigate = useNavigate();
+
   useEffect(() => {  // getting info from database
     // fetch data
     const resultsFetch = async () => {
       const results = await database('products', 'GET', localStorage.getItem("accessToken"))
       setResults(results);
+      if (results === 'jwt expired') {
+        localStorage.setItem("accessToken", results['accessToken'])
+        localStorage.setItem("user-info", JSON.stringify(results))
+        navigate('/login')
+      }
     }
     resultsFetch()
     // console.log("results", results)
-  }, []);
+  }, [navigate]);
   // console.log("results", results)
 
   function addToCartButton(e) {
@@ -54,7 +61,7 @@ function Products({ cart, addToCart }) {
       addToCart([...cart, cartbody])
     } */
 
-    console.log(cart)
+   //  console.log(cart)
 
   }
 
