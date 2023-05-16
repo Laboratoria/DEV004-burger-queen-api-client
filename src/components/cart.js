@@ -25,10 +25,11 @@ function Cart({ cart, addToCart }/* { menuToProducts } */) {
 
   const body = { // body will be used by postOrder
     "client": client,
-    "products": [cart],
+    "products": cart,
     "status": "pending",
     "dataEntry": new Date().toLocaleString()
   }
+
   function postOrder() {
     if (client === '') {
       setErrorClient(true)
@@ -80,13 +81,14 @@ function Cart({ cart, addToCart }/* { menuToProducts } */) {
           <h1>Carrito:</h1><br></br>  {/* rendering products inside the cart */}
           {/* cart items */}
           {cart.map((item, index) => {
+            console.log(item)
             return (
               <div className="cart">
-                <h3>{item.name}</h3>
-                <p>Precio: {item.price}</p>
+                <h3>{item.product.name} x{item.qty}</h3>
+                <p>Precio: {item.product.price * item.qty}</p>
                 <button
                   className="checkoutBoxButtons"
-                  onClick={(e) => {
+                  onClick={() => {
                     // remove item from cart
                     cart.splice(index, 1);
                     /* let x = cart; */
@@ -105,7 +107,7 @@ function Cart({ cart, addToCart }/* { menuToProducts } */) {
             style={{ visibility: errorCart ? 'visible' : 'hidden' }}
           >Añade productos al carrito antes de continuar<br></br><br></br></p>}
 
-          <h1>Total: {cart.reduce((a, b) => a + b.price, 0)}</h1><br></br>  {/* price total */}
+          <h1>Total: {cart.reduce((a, b) => a + (b.product.price * b.qty), 0)}</h1><br></br>  {/* price total */}
           {/* <p>{cart.reduce((a, b) => a + b.price, 0)}$</p> */}
           <button
             className="checkoutBoxButtons"

@@ -22,6 +22,42 @@ function Products({ cart, addToCart }) {
   }, []);
   // console.log("results", results)
 
+  function addToCartButton(e) {
+    // console.log("cart", cart)
+    // console.log("e", e)
+
+    const cartbody = {
+      "qty": 1,
+      "product": e
+    }
+
+    // console.log(cartbody)
+    // console.log(cart)
+    //if (cart.length > 0) {
+    for (const i in cart) {
+      // console.log(cart[i]['product']['id'])
+      // console.log(e['id'])
+      if (cart[i]['product']['id'] === e['id']) {
+        cart[i]['qty'] += 1
+        console.log(cart)
+        return
+      } /* else {
+          // console.log(cartbody)
+          // cart.push(cartbody)
+          addToCart([...cart, cartbody])
+          console.log(cart)
+          return
+        } */
+    }
+    addToCart([...cart, cartbody])
+    /* } else {
+      addToCart([...cart, cartbody])
+    } */
+
+    console.log(cart)
+
+  }
+
   return (
     <>
       {results && results.map((e, index) => { // renders products
@@ -36,7 +72,7 @@ function Products({ cart, addToCart }) {
             <p id={`counter${index}`}>{counter}</p> */}
 
               <button
-                onClick={() => { addToCart([...cart, e]); console.log(index) }}
+                onClick={() => { addToCartButton(e)/* ; console.log("cart", cart); console.log("e", e) */ }}
                 className="checkoutBoxButtons"
               >Agregar al carrito</button>
 

@@ -23,9 +23,9 @@ function App() {
           <Route element={<PrivateRoutes />}>
             <Route element={<Menu />} path="/menu" exact />
             <Route element={<Menu />} path="/" exact />
+            <Route element={<Kitchen />} path="/kitchen" exact />
           </Route>
-          <Route element={<Login />} path="/login" />
-          <Route element={<Kitchen />} path="/kitchen" />
+          <Route element={<Login />} path="/login" />          
         </Routes>
       </>
   )
