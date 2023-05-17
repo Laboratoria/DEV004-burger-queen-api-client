@@ -4,10 +4,11 @@ import React from 'react'
 import { fireEvent } from "@testing-library/react";
 import '@testing-library/jest-dom'
 import { BrowserRouter/* , MemoryRouter *//* , Router */ } from "react-router-dom"
-// import { /* Link,  */Route, Routes, Router/* , useNavigate */ } from 'react-router-dom'
+// import { /* Link,  *//* Route, Routes, Router, */ useNavigate } from 'react-router-dom'
 // import App from './App';
 // import Login from './components/login.js';
 import App from './App.js';
+import Kitchen from './components/kitchen.js';
 // import { signIn } from './scripts/signIn';
 // import { postOrder } from './scripts/postOrder.js';
 // import { database } from './scripts/database.js';
@@ -110,5 +111,33 @@ describe('Post Order', () => {
     await screen.findByText('Enviado a cocina')
 
     expect(screen.getByText(/Enviado a cocina/i)).toBeInTheDocument()
+  })
+})
+
+describe('Order Ready', () => {
+  test('Successful Order Ready', async () => {
+    render(<Kitchen />, { wrapper: BrowserRouter })
+    // const user = userEvent.setup()
+
+    // const navigate = useNavigate();
+
+    // navigate('/kitchen')
+
+    const notProcessedText1 = await screen.findAllByText(/not processed/i)
+    // console.log("1", notProcessedText1.length)
+
+    const orderReadyButton = await screen.findAllByText(/Listo/i)
+    fireEvent.click(orderReadyButton[orderReadyButton.length - 1])
+    // const button = screen.getByTestId(`buttonid1`)
+    // fireEvent.click(button)
+    // console.log((orderReadyButton[orderReadyButton.length - 1]))
+
+    // render(<Kitchen />, { wrapper: BrowserRouter })
+
+    // const notProcessedText2 = await screen.findAllByText(/not processed/i)
+    // console.log("2", notProcessedText2.length)
+
+    // expect(notProcessedText1.length > notProcessedText2.length).toBe(true)
+
   })
 })

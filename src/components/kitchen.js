@@ -32,10 +32,10 @@ function Kitchen() {
         // console.log(e.id)
         return (
           // results && results.map((e, index) => (
-          <section className="cartBox">
+          <section /* key={index}  */className="cartBox">
 
             {e['products'].map((products, index) => {
-              console.log(products['product']['name'])
+              // console.log(products['product']['name'])
               return (
                 <>
                   {/* <img src={products['product']['image']} alt={products['product']['name']}></img> */}
@@ -64,6 +64,7 @@ function Kitchen() {
             <p id={`counter${index}`}>{counter}</p> */}
 
               <button
+                data-testid={`buttonid${e['id']}`}
                 onClick={() => {
                   database(`orders/${e.id}`, 'PATCH', localStorage.getItem("accessToken"), body)
                   window.location.reload(false)
@@ -73,7 +74,7 @@ function Kitchen() {
                   // console.log(results)
                   // results.splice(index, 1);
                   // orderReady([...results]);
-                  console.log(results)
+                  // console.log(results)
                 }}
                 className="checkoutBoxButtons"
               >Listo</button>
