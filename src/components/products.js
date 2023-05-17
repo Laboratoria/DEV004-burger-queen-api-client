@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-// import { /* Navigate,  */useNavigate } from "react-router-dom"
+import { /* Navigate,  */useNavigate } from "react-router-dom"
 import './styles.css';
 // import { signIn } from '../scripts/signIn';
 import { database } from '../scripts/database';
@@ -11,16 +11,59 @@ function Products({ cart, addToCart }) {
   const [results, setResults] = useState()
   // const [cart, addToCart] = useState([]);
 
+  const navigate = useNavigate();
+
   useEffect(() => {  // getting info from database
     // fetch data
     const resultsFetch = async () => {
       const results = await database('products', 'GET', localStorage.getItem("accessToken"))
       setResults(results);
+      if (results === 'jwt expired') {
+        localStorage.setItem("accessToken", results['accessToken'])
+        localStorage.setItem("user-info", JSON.stringify(results))
+        navigate('/login')
+      }
     }
     resultsFetch()
     // console.log("results", results)
-  }, []);
+  }, [navigate]);
   // console.log("results", results)
+
+  function addToCartButton(e) {
+    // console.log("cart", cart)
+    // console.log("e", e)
+
+    const cartbody = {
+      "qty": 1,
+      "product": e
+    }
+
+    // console.log(cartbody)
+    // console.log(cart)
+    //if (cart.length > 0) {
+    for (const i in cart) {
+      // console.log(cart[i]['product']['id'])
+      // console.log(e['id'])
+      if (cart[i]['product']['id'] === e['id']) {
+        cart[i]['qty'] += 1
+        console.log(cart)
+        return
+      } /* else {
+          // console.log(cartbody)
+          // cart.push(cartbody)
+          addToCart([...cart, cartbody])
+          console.log(cart)
+          return
+        } */
+    }
+    addToCart([...cart, cartbody])
+    /* } else {
+      addToCart([...cart, cartbody])
+    } */
+
+   //  console.log(cart)
+
+  }
 
   return (
     <>
@@ -36,9 +79,9 @@ function Products({ cart, addToCart }) {
             <p id={`counter${index}`}>{counter}</p> */}
 
               <button
-                onClick={() => { addToCart([...cart, e]); console.log(index) }}
+                onClick={() => { addToCartButton(e)/* ; console.log("cart", cart); console.log("e", e) */ }}
                 className="checkoutBoxButtons"
-              >Agrega al carrito</button>
+              >Agregar al carrito</button>
 
             </div>
           </section>

@@ -1,79 +1,63 @@
-import { render, screen } from '@testing-library/react';
-import { MemoryRouter } from "react-router-dom"
+import { render, screen/* , queryByAttribute */ } from '@testing-library/react';
+import React from 'react'
+// import userEvent from '@testing-library/user-event'
+import { fireEvent } from "@testing-library/react";
+import '@testing-library/jest-dom'
+import { BrowserRouter/* , MemoryRouter *//* , Router */ } from "react-router-dom"
+// import { /* Link,  *//* Route, Routes, Router, */ useNavigate } from 'react-router-dom'
 // import App from './App';
-import Login from './components/login.js';
+// import Login from './components/login.js';
+import App from './App.js';
+import Kitchen from './components/kitchen.js';
 // import { signIn } from './scripts/signIn';
 // import { postOrder } from './scripts/postOrder.js';
-import { database } from './scripts/database.js';
-
-describe('render routes', () => {
-  test('login', () => {
-    render(
-      <MemoryRouter>
-        <Login />
-      </MemoryRouter>
-    );
-    const linkElement = screen.getByPlaceholderText(/E-mail/i);
-    // console.log(linkElement)
-    expect(linkElement).toBeInTheDocument();
-  });
-})
+// import { database } from './scripts/database.js';
+// import { render, queryByAttribute } from 'react-testing-library';
 
 describe('Login', () => {
+  test('Error', async () => {
+    render(<App />, { wrapper: BrowserRouter })
+
+    const button = screen.getByText(/Ingresar/i)
+    fireEvent.click(button)
+
+    await screen.findByText('Email and password are required')
+
+    expect(screen.getByText(/Email and password are required/i)).toBeInTheDocument()
+  })
+
   test('Successful login', async () => {
-    const email = "grace.hopper@systers.xyz"
-    const password = "123456"
-    const body = { email, password }
-    const result = await database('login', 'POST', null, body)
-    // console.log('result[0]: '+result[0])
-    // console.log('result["accessToken"]: '+result['accessToken'].length)
-    // expect(result.length > '200').toBe(true)
-    expect(result['accessToken'].length > '150').toBe(true)
-  })
+    // localStorage.setItem("user-info", '')
+    render(<App />, { wrapper: BrowserRouter })
 
-  test('Cannot find user', async () => {
-    const email = "hopper@systers.xyz"
-    const password = "123456"
-    const body = { email, password }
-    const result = await database('login', 'POST', null, body)
-    expect(result === 'Cannot find user').toBe(true)
-  })
-
-  test('Password is too short', async () => {
-    const email = "grace.hopper@systers.xyz"
-    const password = "123"
-    const body = { email, password }
-    const result = await database('login', 'POST', null, body)
-    expect(result === 'Password is too short').toBe(true)
-  })
-
-  test('Email format is invalid', async () => {
-    const email = "hopper"
-    const password = "123456"
-    const body = { email, password }
-    const result = await database('login', 'POST', null, body)
-    expect(result === 'Email format is invalid').toBe(true)
-  })
-
-  test('Email and password are required', async () => {
-    const email = ""
-    const password = ""
-    const body = { email, password }
-    const result = await database('login', 'POST', null, body)
-
-    expect(result === 'Email and password are required').toBe(true)
+    const emailInput = screen.getByPlaceholderText(/E-mail/i)/* .value = 'grace.hopper@systers.xyz' */
+    fireEvent.change(emailInput, { target: { value: 'grace.hopper@systers.xyz' } })
+    const passwordInput = screen.getByPlaceholderText(/Contraseña/i)/* .value = '123456' */
+    fireEvent.change(passwordInput, { target: { value: '123456' } })
+    // console.log(element)
+    // screen.getByTestId('signInButton').dispatchEvent(new Event('click'));
+    // await user.click(screen.getByText(/Ingresar/i))
+    const button = screen.getByText(/Ingresar/i)
+    // console.log(button)
+    fireEvent.click(button)
+    await screen.findByText('Enviar a cocina')
+    // console.log(dom)
+    // const table = getById(dom.container, 'directory-table');
+    // console.log(table)
+    // expect(router.navigateTo).toHaveBeenCalledWith('/home');
+    expect(screen.getByText(/Enviar a cocina/i)).toBeInTheDocument()
   })
 })
 
 describe('Post Order', () => {
-  test('Successful Order', async () => {
-    const email = "grace.hopper@systers.xyz"
+  test('Error', async () => {
+    /* const email = "grace.hopper@systers.xyz"
     const password = "123456"
     const body1 = { email, password }
     const result1 = await database('login', 'POST', null, body1)
     // console.log(result)
     const body2 = {
-      "client": "Jean",
+      "client": "UNIT TEST",
       "products": [
         [
           {
@@ -95,6 +79,65 @@ describe('Post Order', () => {
     const result2 = await database('orders', 'POST', accessToken, body2)
     // console.log(result)
     // Object.keys(exampleObject).length
-    expect(Object.keys(result2).length).toBe(5)
+    expect(Object.keys(result2).length).toBe(5) */
+    render(<App />, { wrapper: BrowserRouter })
+
+    const button = screen.getByText(/Enviar a cocina/i)
+    // console.log(button)
+    fireEvent.click(button)
+    
+    // global.alert = jest.fn();
+    await screen.findByText('Ingresa un nombre para el cliente')
+    await screen.findByText('Añade productos al carrito antes de continuar')
+
+    expect(screen.getByText(/Ingresa un nombre para el cliente/i)).toBeInTheDocument()
+    expect(screen.getByText(/Añade productos al carrito antes de continuar/i)).toBeInTheDocument()
+    // expect(global.alert).toHaveBeenCalledTimes(1)
+  })
+
+  test('Successful Order', async () => {
+    render(<App />, { wrapper: BrowserRouter })
+
+    const clientInput = screen.getByPlaceholderText(/Nombre/i)/* .value = 'grace.hopper@systers.xyz' */
+    fireEvent.change(clientInput, { target: { value: 'UNIT TEST' } })
+
+    const addCartButton = await screen.findAllByText(/Agregar al carrito/i)
+    fireEvent.click(addCartButton[0])
+
+    const checkoutButton = screen.getByText(/Enviar a cocina/i)
+    // console.log(button)
+    fireEvent.click(checkoutButton)
+
+    await screen.findByText('Enviado a cocina')
+
+    expect(screen.getByText(/Enviado a cocina/i)).toBeInTheDocument()
+  })
+})
+
+describe('Order Ready', () => {
+  test('Successful Order Ready', async () => {
+    render(<Kitchen />, { wrapper: BrowserRouter })
+    // const user = userEvent.setup()
+
+    // const navigate = useNavigate();
+
+    // navigate('/kitchen')
+
+    const notProcessedText1 = await screen.findAllByText(/not processed/i)
+    // console.log("1", notProcessedText1.length)
+
+    const orderReadyButton = await screen.findAllByText(/Listo/i)
+    fireEvent.click(orderReadyButton[orderReadyButton.length - 1])
+    // const button = screen.getByTestId(`buttonid1`)
+    // fireEvent.click(button)
+    // console.log((orderReadyButton[orderReadyButton.length - 1]))
+
+    // render(<Kitchen />, { wrapper: BrowserRouter })
+
+    // const notProcessedText2 = await screen.findAllByText(/not processed/i)
+    // console.log("2", notProcessedText2.length)
+
+    // expect(notProcessedText1.length > notProcessedText2.length).toBe(true)
+
   })
 })

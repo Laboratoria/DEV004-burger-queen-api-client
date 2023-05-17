@@ -9,14 +9,54 @@ import { database } from '../scripts/database';
 function Cart({ cart, addToCart }/* { menuToProducts } */) {
 
   const [client, setClient] = useState('')
+  // const [clientText, setClientText] = useState('')
   // const [results, setResults] = useState()
   // const [cart, addToCart] = useState([])
+  const [errorClient, setErrorClient] = useState(false)
+  // const [errorTextClient, setErrorTextClient] = useState("Error");
+  const [errorCart, setErrorCart] = useState(false)
+  // const [errorTextCart, setErrorTextCart] = useState("Error");
+  const [successfulOrder, setSuccessfulOrder] = useState(false);
+  // const [successfulOrderText, setSuccessfulOrderText] = useState("Error");
+  /* let error = false
+  let errorText = 'Error' */
+
+  // const navigate = useNavigate()
 
   const body = { // body will be used by postOrder
     "client": client,
-    "products": [cart],
+    "products": cart,
     "status": "pending",
-    "dataEntry": new Date().toLocaleString()
+    "dataEntry": new Date().toLocaleString(),
+    "dateProcessed": "not processed"
+  }
+
+  function postOrder() {
+    if (client === '') {
+      setErrorClient(true)
+      // setErrorTextClient('Ingresa un nombre para el cliente')
+      // alert('Ingresa un nombre para el cliente')
+    }
+    if (cart.length === 0) {
+      setErrorCart(true)
+      // setErrorTextCart('Añade productos al carrito antes de continuar')
+      // alert('Añade productos al carrito antes de continuar')
+    }
+    if (client.length > 0 && cart.length > 0) {
+      database('orders', 'POST', localStorage.getItem("accessToken"), body)
+      setErrorClient(false)
+      setErrorCart(false)
+      setSuccessfulOrder(true)
+      // setSuccessfulOrderText('Enviado a Cocina')
+      setTimeout(() => {
+        // navigate('/menu')
+        window.location.reload(false)
+        /* setSuccessfulOrder(false)
+        setClient('')
+        addToCart([]) */
+      }, "3000");
+      // alert('Enviado a la cocina')
+    }
   }
 
   return (
@@ -30,19 +70,26 @@ function Cart({ cart, addToCart }/* { menuToProducts } */) {
             placeholder="Nombre"
             className="inputBox"
             onChange={(e) => setClient(e.target.value)}
-          ></input>
+          >{/* {clientText} */}</input>
           <br></br><br></br>
+
+          {errorClient && <p
+            id="textoCorreoInvalido"
+            className="textoCorreoInvalido"
+            style={{ visibility: errorClient ? 'visible' : 'hidden' }}
+          >Ingresa un nombre para el cliente<br></br><br></br></p>}
 
           <h1>Carrito:</h1><br></br>  {/* rendering products inside the cart */}
           {/* cart items */}
           {cart.map((item, index) => {
+            //console.log(item)
             return (
               <div className="cart">
-                <h3>{item.name}</h3>
-                <p>Precio: {item.price}</p>
+                <h3>{item.product.name} x{item.qty}</h3>
+                <p>Precio: {item.product.price * item.qty}</p>
                 <button
                   className="checkoutBoxButtons"
-                  onClick={(e) => {
+                  onClick={() => {
                     // remove item from cart
                     cart.splice(index, 1);
                     /* let x = cart; */
@@ -53,14 +100,26 @@ function Cart({ cart, addToCart }/* { menuToProducts } */) {
               </div>
             );
           })}
-          <br></br>
 
-          <h1>Total: {cart.reduce((a, b) => a + b.price, 0)}</h1><br></br>  {/* price total */}
+
+          {errorCart && <p
+            id="textoCorreoInvalido"
+            className="textoCorreoInvalido"
+            style={{ visibility: errorCart ? 'visible' : 'hidden' }}
+          >Añade productos al carrito antes de continuar<br></br><br></br></p>}
+
+          <h1>Total: {cart.reduce((a, b) => a + (b.product.price * b.qty), 0)}</h1><br></br>  {/* price total */}
           {/* <p>{cart.reduce((a, b) => a + b.price, 0)}$</p> */}
           <button
             className="checkoutBoxButtons"
-            onClick={() => { database('orders', 'POST', localStorage.getItem("accessToken"), body) }}
+            onClick={() => { postOrder()/* ; setError() *//* database('orders', 'POST', localStorage.getItem("accessToken"), body) */ }}
           >Enviar a cocina</button>
+
+          {successfulOrder && <p
+            id="textoCorreoInvalido"
+            className="textoCorreoInvalido"
+            style={{ visibility: successfulOrder ? 'visible' : 'hidden' }}
+          ><br></br>Enviado a cocina<br></br><br></br></p>}
 
         </div>
       </section>
