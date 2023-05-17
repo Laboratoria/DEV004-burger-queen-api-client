@@ -40,7 +40,7 @@ function Products({ cart, addToCart }) {
 
     // console.log(cartbody)
     // console.log(cart)
-    //if (cart.length > 0) {
+    // if (cart.length > 0) {
     for (const i in cart) {
       // console.log(cart[i]['product']['id'])
       // console.log(e['id'])
@@ -48,13 +48,7 @@ function Products({ cart, addToCart }) {
         cart[i]['qty'] += 1
         console.log(cart)
         return
-      } /* else {
-          // console.log(cartbody)
-          // cart.push(cartbody)
-          addToCart([...cart, cartbody])
-          console.log(cart)
-          return
-        } */
+      }
     }
     addToCart([...cart, cartbody])
     /* } else {

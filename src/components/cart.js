@@ -52,9 +52,6 @@ function Cart({ cart, addToCart }/* { menuToProducts } */) {
       setTimeout(() => {
         // navigate('/menu')
         window.location.reload(false)
-        /* setSuccessfulOrder(false)
-        setClient('')
-        addToCart([]) */
       }, "3000");
       // alert('Enviado a la cocina')
     }
@@ -113,7 +110,7 @@ function Cart({ cart, addToCart }/* { menuToProducts } */) {
           {/* <p>{cart.reduce((a, b) => a + b.price, 0)}$</p> */}
           <button
             className="checkoutBoxButtons"
-            onClick={() => { postOrder()/* ; setError() *//* database('orders', 'POST', localStorage.getItem("accessToken"), body) */ }}
+            onClick={() => { postOrder() }}
           >Enviar a cocina</button>
 
           {successfulOrder && <p

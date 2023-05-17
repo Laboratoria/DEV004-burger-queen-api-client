@@ -22,18 +22,6 @@ function Kitchen() {
     }
   }
 
-  // const readyButtonText = 'Listo'
-
-  /* function readyButtonCall(status) {
-    if (status === 'delivered') {
-      setReadyButtonText('Entregado')
-    }
-  } */
-
-  /* useEffect(() => {
-    setReadyButtonText('Entregado')
-  }, []) */
-
   const body1 = { // body will be used by postOrder
     "status": "processed",
     "dateProcessed": new Date().toLocaleString()
@@ -54,28 +42,6 @@ function Kitchen() {
     resultsFetch()
     // console.log("results", results)
   }, []);
-
-  // const readyButton = (e) => {
-  //   return (<button
-  //     // data-testid={`buttonid${e['id']}`}
-  //     // onload={readyButtonCall(e['status'])}
-  //     onClick={() => {
-  //       database(`orders/${e.id}`, 'PATCH', localStorage.getItem("accessToken"), body)
-  //       window.location.reload(false)
-  //       // setNoText(false)
-  //       // setReadyText(true)
-  //       // remove item from cart
-  //       // console.log(results)
-  //       // results.splice(index, 1);
-  //       // orderReady([...results]);
-  //       // console.log(results)
-  //     }}
-  //     className="checkoutBoxButtons"
-  //   >{/* () => {if (e['status'] === 'delivered') {
-  //     console.log(e['status'])
-  //     return 'Entregado'
-  //   } else {return 'Listo'} } *//* }Listo</button>) */
-  // }
 
   function updateDatabaseKitchen(e) {
     if (e['status'] === 'pending') {
@@ -135,19 +101,9 @@ function Kitchen() {
                   updateDatabaseKitchen(e)
                   // database(`orders/${e.id}`, 'PATCH', localStorage.getItem("accessToken"), body)
                   window.location.reload(false)
-                  // setNoText(false)
-                  // setReadyText(true)
-                  // remove item from cart
-                  // console.log(results)
-                  // results.splice(index, 1);
-                  // orderReady([...results]);
-                  // console.log(results)
                 }}
                 className="checkoutBoxButtons"
-              >{/* () => {if (e['status'] === 'delivered') {
-                console.log(e['status'])
-                return 'Entregado'
-              } else {return 'Listo'} } */}{readyButtonText(e['status'])}</button>
+              >{readyButtonText(e['status'])}</button>
 
             </div>
           </section>
