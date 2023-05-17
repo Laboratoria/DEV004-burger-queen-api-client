@@ -28,7 +28,8 @@ function Cart({ cart, addToCart }/* { menuToProducts } */) {
     "products": cart,
     "status": "pending",
     "dataEntry": new Date().toLocaleString(),
-    "dateProcessed": "not processed"
+    "dateProcessed": "not processed",
+    "dateDelivered": "not delivered"
   }
 
   function postOrder() {
