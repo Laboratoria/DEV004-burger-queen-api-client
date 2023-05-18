@@ -43,13 +43,18 @@ body {
   padding: 20px 50px;
   width: auto;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   margin: 0px auto;
   align-items: center;
   justify-content: space-around;
   background-color: white;
   border-radius: 15px;
   height: auto;
+}
+
+.quantitybuttons {
+  display: flex;
+  flex-direction: row;
 }
 
 .cajaInicio>img {

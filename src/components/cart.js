@@ -83,7 +83,37 @@ function Cart({ cart, addToCart }/* { menuToProducts } */) {
             //console.log(item)
             return (
               <div className="cart">
-                <h3>{item.product.name} x{item.qty}</h3>
+                <h3>{item.product.name}</h3>
+                <section className="quantitybuttons">
+                  <h4
+                    onClick={() => {
+                      if (item.qty != 1) {
+                        let itemTemp = item
+                        item.qty -= 1;
+                        cart.splice(index, 1);
+                        // console.log("cart", cart)
+                        // addToCart([...cart])
+                        addToCart([...cart, itemTemp])
+                        console.log(item)
+                      }
+                      if (item.qty === 1) {
+                        cart.splice(index, 1);
+                        /* let x = cart; */
+                        addToCart([...cart]);
+                      }
+                    }}>-</h4>
+                  <h4>&nbsp;&nbsp;{item.qty}&nbsp;&nbsp;</h4>
+                  <h4
+                    onClick={() => {
+                      let itemTemp = item
+                      item.qty += 1;
+                      cart.splice(index, 1);
+                      // console.log("cart", cart)
+                      // addToCart([...cart])
+                      addToCart([...cart, itemTemp])
+                      console.log(item)
+                    }}>+</h4>
+                </section>
                 <p>Precio: {item.product.price * item.qty}</p>
                 <button
                   className="checkoutBoxButtons"
@@ -120,7 +150,7 @@ function Cart({ cart, addToCart }/* { menuToProducts } */) {
           ><br></br>Enviado a cocina<br></br><br></br></p>}
 
         </div>
-      </section>
+      </section >
     </>
   )
 }
