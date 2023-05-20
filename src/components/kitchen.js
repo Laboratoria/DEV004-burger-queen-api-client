@@ -53,14 +53,16 @@ function Kitchen() {
   }, [navigate]);
 
   async function updateDatabaseKitchen(e) {
+    // setResults(false)
     if (e['status'] === 'pending') {
-      database(`orders/${e.id}`, 'PATCH', localStorage.getItem("accessToken"), body1)
+      await database(`orders/${e.id}`, 'PATCH', localStorage.getItem("accessToken"), body1)
+      console.log("processed")
     }
     if (e['status'] === 'processed') {
-      database(`orders/${e.id}`, 'PATCH', localStorage.getItem("accessToken"), body2)
-    }
-    setResults(false)
-    results = await database('orders', 'GET', localStorage.getItem("accessToken"))
+      await database(`orders/${e.id}`, 'PATCH', localStorage.getItem("accessToken"), body2)
+      console.log("delivered")
+    }    
+    results = await database('orders', 'GET', localStorage.getItem("accessToken"))    
     setResults(results)
     // setResults(true)
   }

@@ -114,8 +114,8 @@ describe('Post Order', () => {
   })
 })
 
-describe('Order Ready', () => {
-  test('Successful Order Ready', async () => {
+describe('Kitchen Order', () => {
+  test('Processed', async () => {
     render(<Kitchen />, { wrapper: BrowserRouter })
     // const user = userEvent.setup()
 
@@ -124,7 +124,7 @@ describe('Order Ready', () => {
     // navigate('/kitchen')
 
     const notProcessedText1 = await screen.findAllByText(/not processed/i)
-    console.log("1", notProcessedText1.length)
+    // console.log("1", notProcessedText1.length)
 
     const orderReadyButton = await screen.findAllByText(/Listo/i)
     fireEvent.click(orderReadyButton[orderReadyButton.length - 1])
@@ -135,9 +135,33 @@ describe('Order Ready', () => {
     // render(<Kitchen />, { wrapper: BrowserRouter })
 
     const notProcessedText2 = await screen.findAllByText(/not processed/i)
-    console.log("2", notProcessedText2.length)
+    // console.log("2", notProcessedText2.length)
 
     expect(notProcessedText1.length > notProcessedText2.length).toBe(true)
+  })
 
+  test('Delivered', async () => {
+    render(<Kitchen />, { wrapper: BrowserRouter })
+    // const user = userEvent.setup()
+
+    // const navigate = useNavigate();
+
+    // navigate('/kitchen')
+
+    const notDeliveredText1 = await screen.findAllByText(/not delivered/i)
+    // console.log("1", notProcessedText1.length)
+
+    const orderDeliveredButton = await screen.findAllByText(/Entregado/i)
+    fireEvent.click(orderDeliveredButton[orderDeliveredButton.length - 1])
+    // const button = screen.getByTestId(`buttonid1`)
+    // fireEvent.click(button)
+    // console.log((orderReadyButton[orderReadyButton.length - 1]))
+
+    // render(<Kitchen />, { wrapper: BrowserRouter })
+
+    const notDeliveredText2 = await screen.findAllByText(/not delivered/i)
+    // console.log("2", notProcessedText2.length)
+
+    expect(notDeliveredText1.length > notDeliveredText2.length).toBe(true)
   })
 })
