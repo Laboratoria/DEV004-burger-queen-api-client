@@ -29,7 +29,7 @@ body {
 .kitchenScreen {
   height: 100%;
   /*  background-color: #d49f18; */
-  background-image: url("./img/img_fondo.png");
+  background-image: url("./img/img_kitchenScreen.jpg");
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   align-items: center;

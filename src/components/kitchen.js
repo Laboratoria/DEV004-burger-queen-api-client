@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react'
+import { /* Navigate,  */useNavigate } from "react-router-dom"
 // import { postOrder } from '../scripts/postOrder';
 import { database } from '../scripts/database';
 
 function Kitchen() {
 
-  const [results, setResults] = useState()
+  let [results, setResults] = useState()
   // const [order, orderReady] = useState([])
   // const [readyButtonText, setReadyButtonText] = useState('Listo')
   // const [noText, setNoText] = useState(true)
   // const [readyButton, setReadyButton] = useState(false)
+
+  const navigate = useNavigate();
 
   const readyButtonText = (status) => {
     if (status === 'pending') {
@@ -37,19 +40,29 @@ function Kitchen() {
     const resultsFetch = async () => {
       const results = await database('orders', 'GET', localStorage.getItem("accessToken"))
       setResults(results);
+      if (results === 'jwt expired') {
+        localStorage.setItem("accessToken", results['accessToken'])
+        localStorage.setItem("user-info", JSON.stringify(results))
+        navigate('/login')
+      }
       // console.log(results[0])
     }
     resultsFetch()
+    
     // console.log("results", results)
-  }, []);
+  }, [navigate]);
 
-  function updateDatabaseKitchen(e) {
+  async function updateDatabaseKitchen(e) {
     if (e['status'] === 'pending') {
       database(`orders/${e.id}`, 'PATCH', localStorage.getItem("accessToken"), body1)
     }
     if (e['status'] === 'processed') {
       database(`orders/${e.id}`, 'PATCH', localStorage.getItem("accessToken"), body2)
     }
+    setResults(false)
+    results = await database('orders', 'GET', localStorage.getItem("accessToken"))
+    setResults(results)
+    // setResults(true)
   }
 
   return (
@@ -100,7 +113,10 @@ function Kitchen() {
                 onClick={() => {
                   updateDatabaseKitchen(e)
                   // database(`orders/${e.id}`, 'PATCH', localStorage.getItem("accessToken"), body)
-                  window.location.reload(false)
+                  // resultsFetch()
+                  // Kitchen()
+                  // setResults(results)
+                  // window.location.reload(false)
                 }}
                 className="checkoutBoxButtons"
               >{readyButtonText(e['status'])}</button>

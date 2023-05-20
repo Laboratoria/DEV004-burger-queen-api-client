@@ -124,7 +124,7 @@ describe('Order Ready', () => {
     // navigate('/kitchen')
 
     const notProcessedText1 = await screen.findAllByText(/not processed/i)
-    // console.log("1", notProcessedText1.length)
+    console.log("1", notProcessedText1.length)
 
     const orderReadyButton = await screen.findAllByText(/Listo/i)
     fireEvent.click(orderReadyButton[orderReadyButton.length - 1])
@@ -134,10 +134,10 @@ describe('Order Ready', () => {
 
     // render(<Kitchen />, { wrapper: BrowserRouter })
 
-    // const notProcessedText2 = await screen.findAllByText(/not processed/i)
-    // console.log("2", notProcessedText2.length)
+    const notProcessedText2 = await screen.findAllByText(/not processed/i)
+    console.log("2", notProcessedText2.length)
 
-    // expect(notProcessedText1.length > notProcessedText2.length).toBe(true)
+    expect(notProcessedText1.length > notProcessedText2.length).toBe(true)
 
   })
 })
