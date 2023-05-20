@@ -53,7 +53,7 @@ function Kitchen() {
   }
 
   return (
-    <main className="PantallaInicio">
+    <main className="kitchenScreen">
       {results && results.map((e, index) => { // renders products
         // readyButtonCall(e['status'])
         // console.log(e.id)

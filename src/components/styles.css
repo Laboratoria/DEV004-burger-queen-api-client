@@ -26,6 +26,18 @@ body {
   /* background-position-x: center; */
 }
 
+.kitchenScreen {
+  height: 100%;
+  /*  background-color: #d49f18; */
+  background-image: url("./img/img_fondo.png");
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  font-family: 'Verdana', sans-serif;
+  background-size: cover;
+  /* background-position-x: center; */
+}
+
 .cajaInicio {
   padding: 20px 50px;
   width: 280px;
@@ -42,11 +54,11 @@ body {
 .cartBox {
   padding: 20px 50px;
   width: auto;
-  display: flex;
-  flex-direction: row;
+  display: grid;  
+  /* flex-direction: row; */
   margin: 0px auto;
   align-items: center;
-  justify-content: space-around;
+  justify-items: center;
   background-color: white;
   border-radius: 15px;
   height: auto;

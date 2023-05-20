@@ -38,7 +38,6 @@ function Products({ cart, addToCart }) {
     }
     // console.log(cartbody)
     // console.log(cart)
-
     // if (cart.length > 0) {
     // let cartTemp = [] 
     for (const i in cart) {

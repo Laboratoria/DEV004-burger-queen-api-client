@@ -85,9 +85,10 @@ function Cart({ cart, addToCart }/* { menuToProducts } */) {
               <div className="cart">
                 <h3>{item.product.name}</h3>
                 <section className="quantitybuttons">
+
                   <h4
                     onClick={() => {
-                      if (item.qty != 1) {
+                      if (item.qty !== 0) {
                         let itemTemp = item
                         item.qty -= 1;
                         cart.splice(index, 1);
@@ -96,13 +97,15 @@ function Cart({ cart, addToCart }/* { menuToProducts } */) {
                         addToCart([...cart, itemTemp])
                         console.log(item)
                       }
-                      if (item.qty === 1) {
+                      if (item.qty === 0) {
                         cart.splice(index, 1);
                         /* let x = cart; */
                         addToCart([...cart]);
                       }
                     }}>-</h4>
+
                   <h4>&nbsp;&nbsp;{item.qty}&nbsp;&nbsp;</h4>
+
                   <h4
                     onClick={() => {
                       let itemTemp = item
@@ -113,6 +116,7 @@ function Cart({ cart, addToCart }/* { menuToProducts } */) {
                       addToCart([...cart, itemTemp])
                       console.log(item)
                     }}>+</h4>
+                    
                 </section>
                 <p>Precio: {item.product.price * item.qty}</p>
                 <button
