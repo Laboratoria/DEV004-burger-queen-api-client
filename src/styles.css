@@ -1,0 +1,14 @@
+/* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: 'Cabin';
+  src: url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap');
+}
+
+@font-face {
+  font-family: 'Autour One', cursive;
+  src: url('https://fonts.googleapis.com/css2?family=Autour+One&display=swap');
+}
+body{
+  margin: 0;
+  display: flex;
+}
