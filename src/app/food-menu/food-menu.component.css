@@ -1,0 +1,60 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.header {
+  height: 50px;
+  width: auto;
+  margin: 0;
+  padding: 0;
+  background-color: white
+}
+
+.icon-user{
+  width: 50px;
+  height: auto;
+}
+
+.options {
+  width: 50px;
+  height: 100%;
+  background-color: white;
+  float: left;
+}
+
+.foodSection {
+  height: 100%;
+  background-color: #F2E3C3;
+}
+
+ul {
+  list-style: none;
+  left: -30px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+li{
+  margin-top: 15px;
+}
+
+.icon {
+  width: 30px;
+  height: auto;
+
+}
+h2{
+  font-family: 'Cabin', sans-serif;
+  color: #121619;
+  margin-left: 70px;
+}
+
+.prueba {
+  width: 150px;
+}
