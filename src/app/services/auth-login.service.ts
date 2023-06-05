@@ -9,6 +9,6 @@ export class AuthLoginService {
 
   constructor(private http: HttpClient) {  }
   login(user: any): Observable<any>{
-    return this.http.post("https://virtserver.swaggerhub.com/ssinuco/BurgerQueenAPI/2.0.0/login", user)
+    return this.http.post("http://localhost:8080/login", user)
   }
 }

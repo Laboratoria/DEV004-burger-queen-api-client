@@ -1,5 +1,9 @@
 <header class="header">
     <img src="../../assets/img/icon-user.png" class="icon-user">
+    <div class="containerInfo">
+        <p class="email-user">{{email}}</p>
+        <p class="role-user">{{role}}</p>
+    </div>
 </header>
 
 <section class="foodSection">
@@ -15,23 +19,41 @@
                 <img src="../../assets/img/history.png" class="icon">
             </li>
             <li>
-                <img src="../../assets/img/logout.png" class="icon">
+                <img src="../../assets/img/logout.png" class="icon" (click)="logOut()">
             </li>
         </ul>
     </nav>
     <article class="menu">
-        <h2>Category menu</h2>
-        <div class="ProductCategory">
-            <button (click)="get()" class="prueba">PRUEBA</button>
-        </div>
+        <h1>CATEGORY MENU</h1>
         <div class="productType">
+            <div class="btnsType">
+                <button [class.activo]="btnActive === 'Desayuno'" class="btnType" (click)="showBreakfastItems('Desayuno')">BREAKFAST</button>
+                <button [class.activo]="btnActive === 'meals'" class="btnType" (click)="showBreakfastItems('meals')">MEALS</button>
+            </div>
+            <div class="allProductos">
+                <div class="productCard" *ngFor="let product of filteredItems">
+                    <img src="{{product.image}}" alt="{{product.name}}" class="productImg">
+                    <P class="productName">{{product.name}}</P>
+                    <p class="productPrice">S/. {{product.price}}</p>
+                    <button class="selectProduct">+</button>
+                </div>
 
+            </div>
         </div>
-        <div class="productName">
-
-        </div>
-    </article>
-    <article class="order">
-
     </article>
 </section>
+
+<!-- 
+    <article class="orderForm">
+        <form>
+            <p>ORDER</p>
+            <P>Table's number:</P>
+            <input type="number" placeholder="number">
+            <P>Customer's name:</P>
+            <input type="number" placeholder="name">
+            <button class="cancelOrder">CANCEL</button>
+            <button class="confirmOrder">CONFIRM</button>
+        </form>
+
+
+    </article> -->

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -9,7 +9,10 @@ export class UsersService {
 
   constructor(private http: HttpClient) { }
 
-  getUsers(user:any): Observable<any>{
-    return this.http.get("https://virtserver.swaggerhub.com/ssinuco/BurgerQueenAPI/2.0.0/users", user)
+  getUserInfo(email: string): Observable<any>{
+    const header = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.get("http://localhost:8080/users/{uid}", { headers: header })
   }
 }
