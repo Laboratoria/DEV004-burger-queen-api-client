@@ -1,0 +1,27 @@
+.orderForm {
+    position: absolute;
+    right: 50px;
+    background-color: white;
+    border-radius: 20px;
+    width: 20%;
+    height: 60%;
+    padding: 20px;
+  }
+  
+  .cancelOrder {
+    background-color: #FE4445;
+    color: white;
+    align-self: end;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+  }
+  
+  .confirmOrder {
+    background-color: #09814A;
+    color: white;
+    align-self: end;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+  }

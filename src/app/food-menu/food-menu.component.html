@@ -10,16 +10,16 @@
     <nav class="options">
         <ul>
             <li>
-                <img src="../../assets/img/menu-active.png" class="icon">
+                <img src="https://i.ibb.co/28gZB5W/menu-active.png" class="icon" alt="icon order and menu"/>
             </li>
             <li>
-                <img src="../../assets/img/orders.png" class="icon">
+                <img src="https://i.ibb.co/PF4wPJZ/orders.png" class="icon" alt="active orders">
             </li>
             <li>
-                <img src="../../assets/img/history.png" class="icon">
+                <img src="https://i.ibb.co/KzPsZst/history.png" class="icon" alt="history"/>
             </li>
             <li>
-                <img src="../../assets/img/logout.png" class="icon" (click)="logOut()">
+                <img src="https://i.ibb.co/nmbvZRY/logout.png" class="icon" alt="logout" (click)="logOut()"/>
             </li>
         </ul>
     </nav>
@@ -27,33 +27,19 @@
         <h1>CATEGORY MENU</h1>
         <div class="productType">
             <div class="btnsType">
-                <button [class.activo]="btnActive === 'Desayuno'" class="btnType" (click)="showBreakfastItems('Desayuno')">BREAKFAST</button>
-                <button [class.activo]="btnActive === 'meals'" class="btnType" (click)="showBreakfastItems('meals')">MEALS</button>
+                <button [class.activo]="btnActive === 'Desayuno'" class="btnType" (click)="showSelectedItems('Desayuno')">BREAKFAST</button>
+                <button [class.activo]="btnActive === 'meals'" class="btnType" (click)="showSelectedItems('meals')">MEALS</button>
             </div>
             <div class="allProductos">
                 <div class="productCard" *ngFor="let product of filteredItems">
                     <img src="{{product.image}}" alt="{{product.name}}" class="productImg">
                     <P class="productName">{{product.name}}</P>
                     <p class="productPrice">S/. {{product.price}}</p>
-                    <button class="selectProduct">+</button>
+                    <button class="selectProduct" (click)="addOrder(product)">+</button>
                 </div>
-
             </div>
         </div>
     </article>
+    <app-order-modal></app-order-modal>
 </section>
 
-<!-- 
-    <article class="orderForm">
-        <form>
-            <p>ORDER</p>
-            <P>Table's number:</P>
-            <input type="number" placeholder="number">
-            <P>Customer's name:</P>
-            <input type="number" placeholder="name">
-            <button class="cancelOrder">CANCEL</button>
-            <button class="confirmOrder">CONFIRM</button>
-        </form>
-
-
-    </article> -->

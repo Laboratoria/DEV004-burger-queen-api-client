@@ -1,14 +1,14 @@
 <section class="logIn">
     <article class="artLogo">
-        <h1>LOGO</h1>
+        <img src="../../assets/img/logoBQ.png" class="logo" alt="Burger Queen logo">
     </article>
     <article class="artLogin">
         <h5 class="welcome">Welcome!</h5>
-        <form class="formLogin" method="post">
-            <input type="email" placeholder="email" class="inpEmail" name="email" [(ngModel)]="email" required>
-            <input type="password" placeholder="password" class="inpPassword" name="password" [(ngModel)]="password" required>
-            <button type="submit" class="btnLogin" (click)="logIn()">LOGIN</button>
+        <form class="formLogin" [formGroup]="loginForm" (ngSubmit)="logIn()">
             <p class="error">{{errorMessage}}</p>
+            <input type="email" placeholder="email" class="inpEmail" name="email" formControlName="email">
+            <input type="password" placeholder="password" class="inpPassword" name="password" formControlName="password">
+            <button type="submit" class="btnLogin" (click)="logIn()">LOGIN</button>
         </form> 
     </article>
 </section>

@@ -11,7 +11,7 @@ import { StorageService } from '../services/storage.service';
   styleUrls: ['./food-menu.component.css']
 })
 export class FoodMenuComponent {
-  
+
   products: Array<Product> = [{
     id: 0,
     dateEntry: '',
@@ -22,6 +22,7 @@ export class FoodMenuComponent {
   }]
 
   filteredItems: Product[] = []
+  orderItems: Product[] = []
 
   btnActive: string = '';
 
@@ -29,24 +30,28 @@ export class FoodMenuComponent {
     public showProducts: ProductsService,
     private logout: AuthCurrentUserService,
     private storage: StorageService,
-  ) {  }
+  ) { }
 
   email = this.storage.getEmailUser();
   role = this.storage.getRoleUser();
 
-  showBreakfastItems(type: string){
+  showSelectedItems(type: string) {
     this.btnActive = type;
-    this.showProducts.getProducts().subscribe((data)=>{
+    this.showProducts.getProducts().subscribe((data) => {
       this.products = data;
-      this.filteredItems = this.products.filter((eachProduct)=>{
+      this.filteredItems = this.products.filter((eachProduct) => {
         return eachProduct.type === type;
       })
     })
   }
- 
-  logOut(){
+
+  addOrder(product: Product) {
+    console.log(product);
+  }
+
+  logOut() {
     this.logout.logout();
   }
 
-  
+
 }
