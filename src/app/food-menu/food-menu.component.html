@@ -1,25 +1,18 @@
-<header class="header">
-    <img src="../../assets/img/icon-user.png" class="icon-user">
-    <div class="containerInfo">
-        <p class="email-user">{{email}}</p>
-        <p class="role-user">{{role}}</p>
-    </div>
-</header>
-
+<app-header></app-header>
 <section class="foodSection">
     <nav class="options">
         <ul>
             <li>
-                <img src="https://i.ibb.co/28gZB5W/menu-active.png" class="icon" alt="icon order and menu"/>
+                <img src="https://i.ibb.co/28gZB5W/menu-active.png" class="icon" />
             </li>
             <li>
-                <img src="https://i.ibb.co/PF4wPJZ/orders.png" class="icon" alt="active orders">
+                <img src="https://i.ibb.co/PF4wPJZ/orders.png" class="icon">
             </li>
             <li>
-                <img src="https://i.ibb.co/KzPsZst/history.png" class="icon" alt="history"/>
+                <img src="https://i.ibb.co/KzPsZst/history.png" class="icon" />
             </li>
             <li>
-                <img src="https://i.ibb.co/nmbvZRY/logout.png" class="icon" alt="logout" (click)="logOut()"/>
+                <img src="https://i.ibb.co/nmbvZRY/logout.png" class="icon" (click)="logOut()" />
             </li>
         </ul>
     </nav>
@@ -27,19 +20,20 @@
         <h1>CATEGORY MENU</h1>
         <div class="productType">
             <div class="btnsType">
-                <button [class.activo]="btnActive === 'Desayuno'" class="btnType" (click)="showSelectedItems('Desayuno')">BREAKFAST</button>
-                <button [class.activo]="btnActive === 'meals'" class="btnType" (click)="showSelectedItems('meals')">MEALS</button>
+                <button [class.active]="btnActive === 'Desayuno'" class="btnType"
+                    (click)="showSelectedItems('Desayuno')">BREAKFAST</button>
+                <button [class.active]="btnActive === 'meals'" class="btnType"
+                    (click)="showSelectedItems('meals')">MEALS</button>
             </div>
-            <div class="allProductos">
+            <div class="allProducts">
                 <div class="productCard" *ngFor="let product of filteredItems">
                     <img src="{{product.image}}" alt="{{product.name}}" class="productImg">
                     <P class="productName">{{product.name}}</P>
                     <p class="productPrice">S/. {{product.price}}</p>
-                    <button class="selectProduct" (click)="addOrder(product)">+</button>
+                    <img src="https://i.ibb.co/PDN4nLV/add-button.png" class="selectProduct" (click)="addToOrder(product)">
                 </div>
             </div>
         </div>
     </article>
-    <app-order-modal></app-order-modal>
+    <app-order-modal [orderList]="orderItems" [totalPrice]="orderPrice"></app-order-modal>
 </section>
-

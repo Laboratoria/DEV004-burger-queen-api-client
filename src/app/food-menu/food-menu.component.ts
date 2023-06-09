@@ -2,7 +2,9 @@ import { Component } from '@angular/core';
 import { ProductsService } from '../services/products.service';
 import { AuthCurrentUserService } from '../services/auth-current-user.service';
 import { Product } from '../interfaces/product';
-import { StorageService } from '../services/storage.service';
+import { ProductToOrder } from '../interfaces/product-to-order';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { OrdersService } from '../services/orders.service';
 
 
 @Component({
@@ -22,18 +24,19 @@ export class FoodMenuComponent {
   }]
 
   filteredItems: Product[] = []
-  orderItems: Product[] = []
-
+  selectedProduct!: ProductToOrder;
+  orderItems: ProductToOrder[] = [];
   btnActive: string = '';
+  orderForm!: FormGroup;
+  orderPrice!: number;
 
   constructor(
     public showProducts: ProductsService,
     private logout: AuthCurrentUserService,
-    private storage: StorageService,
-  ) { }
+    public orders: OrdersService,
+  ) {
 
-  email = this.storage.getEmailUser();
-  role = this.storage.getRoleUser();
+  }
 
   showSelectedItems(type: string) {
     this.btnActive = type;
@@ -45,8 +48,30 @@ export class FoodMenuComponent {
     })
   }
 
-  addOrder(product: Product) {
-    console.log(product);
+  calculateTotal() {
+    this.orderPrice = 0;
+    for (let i = 0; i < this.orderItems.length; i++) {
+      this.orderPrice += this.orderItems[i].priceProduct
+    }
+  }
+
+  findProductById = (id: number): ProductToOrder | undefined => {
+    return this.orderItems.find((productToOrder: { product: { id: number; }; }) => productToOrder.product.id === id);
+  }
+
+  addToOrder(product: Product) {
+    const existingProduct = this.findProductById(product.id);
+    if (existingProduct) {
+      existingProduct.qty++;
+      existingProduct.priceProduct += product.price;
+    } else {
+      this.orderItems.push({
+        qty: 1,
+        product: product,
+        priceProduct: product.price
+      });
+    }
+    this.calculateTotal()
   }
 
   logOut() {

@@ -1,13 +1,18 @@
 <article class="orderForm">
-    <form>
-        <p>ORDER</p>
-        <P>Table's number:</P>
-        <input type="number" placeholder="number">
-        <P>Customer's name:</P>
-        <input type="number" placeholder="name">
-        <button class="cancelOrder">CANCEL</button>
-        <button class="confirmOrder">CONFIRM</button>
-    </form>
+    <p class="orderTitle">ORDER</p>
+    <P class="NameCustomer">Customer's name:</P>
+    <input class="inpName" type="text" #customerName>
+    <div class="miniCardProduct" *ngFor="let product of orderList">
+        <img class="imgMiniCard" src="{{product.product.image}}">
 
-
+        <p class="productName">{{product.product.name}}</p>
+        <p class="productQty">x{{product.qty}}</p>
+        <img src="https://i.ibb.co/P6ZGVZ4/minus-button.png" class="delete" (click)="deleteProduct(product)">
+        <img src="https://i.ibb.co/PDN4nLV/add-button.png" class="add" (click)="addProduct(product)">
+    </div>
+    <p class="totalPrice">TOTAL: S./{{totalPrice}}</p>
+    <div class="orderBtns">
+        <button class="cancelOrder" (click)="cancelOrder()">CANCEL</button>
+        <button class="confirmOrder" (click)="createOrder(customerName.value)" type="submit">CONFIRM</button>
+    </div>
 </article>

@@ -9,7 +9,7 @@ export class UsersService {
 
   constructor(private http: HttpClient) { }
 
-  getUserInfo(email: string): Observable<any>{
+  getUserInfo(): Observable<any>{
     const header = new HttpHeaders({
       'Content-Type': 'application/json'
     });

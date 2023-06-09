@@ -7,13 +7,18 @@ export class StorageService {
 
   constructor() { }
 
-  getEmailUser(): string{
+  getEmailUser(): string {
     const email = localStorage.getItem('user-email');
     return JSON.stringify(email).replace(/['"]+/g, '');
   }
 
-  getRoleUser(): string{
+  getRoleUser(): string {
     const role = localStorage.getItem('user-rol');
     return JSON.stringify(role).replace(/['"]+/g, '');
+  }
+
+  getIdUser(): string {
+    const id = localStorage.getItem('user-id');
+    return JSON.stringify(id).replace(/['"]+/g, '');
   }
 }

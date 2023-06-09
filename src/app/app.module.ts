@@ -10,6 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { FoodMenuComponent } from './food-menu/food-menu.component';
 import { WorkersListComponent } from './workers-list/workers-list.component';
 import { OrderModalComponent } from './order-modal/order-modal.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { OrderModalComponent } from './order-modal/order-modal.component';
     FoodMenuComponent,
     WorkersListComponent,
     OrderModalComponent,
+    HeaderComponent,
     
   ],
   imports: [

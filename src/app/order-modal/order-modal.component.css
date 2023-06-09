@@ -1,27 +1,130 @@
 .orderForm {
-    position: absolute;
-    right: 50px;
-    background-color: white;
-    border-radius: 20px;
-    width: 20%;
-    height: 60%;
-    padding: 20px;
-  }
-  
-  .cancelOrder {
-    background-color: #FE4445;
-    color: white;
-    align-self: end;
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
-  }
-  
-  .confirmOrder {
-    background-color: #09814A;
-    color: white;
-    align-self: end;
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
-  }
+  position: absolute;
+  right: 50px;
+  background-color: white;
+  border-radius: 20px;
+  width: 20%;
+  height: auto;
+  padding: 20px;
+  font-family: 'Cabin', sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+.orderTitle {
+  font-weight: 600;
+  font-size: 1.3em;
+}
+
+.inpName {
+  font-family: 'Cabin', sans-serif;
+  border: none;
+  font-size: 16px;
+  margin: 0;
+  padding: 10px;
+  width: 50%;
+  height: 15px;
+  background-color: #F2E3C3;
+  color: #121619;
+  margin-bottom: 30px;
+  border-radius: 20px;
+}
+
+.miniCardProduct {
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  grid-template-rows: 33% 33% 33%;
+  margin: 20px 0;
+  background-color: #F2E3C3;
+  border-radius: 0 20px 20px 20px;
+  width: 95%;
+  height: 100px;
+}
+
+.imgMiniCard {
+  width: 50px;
+  height: auto;
+}
+
+.productName {
+  margin-left: 10px;
+  grid-column-start: 2;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+.productQty {
+  font-size: 1em;
+  font-weight: 700;
+  margin-left: 10px;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+.add {
+  background-color: #FF8F4E;
+  color: white;
+  border-radius: 100%;
+  border: none;
+  width: 25px;
+  height: 25px;
+  font-size: 1.5em;
+  display: inline-block;
+  vertical-align: center;
+  margin: 2px;
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 3;
+  grid-row-end: 4;
+  justify-self: end;
+}
+
+.delete {
+  background-color: #FF8F4E;
+  color: white;
+  border-radius: 100%;
+  border: none;
+  width: 25px;
+  height: 25px;
+  font-size: 1.5em;
+  display: inline-block;
+  vertical-align: center;
+  margin: 2px;
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 3;
+  grid-row-end: 4;
+
+}
+
+.totalPrice {
+  align-self: flex-end;
+  font-weight: bold;
+}
+
+.orderBtns {
+  display: flex;
+  justify-content: end;
+  gap: 10px;
+}
+
+.cancelOrder {
+  background-color: #FE4445;
+  color: white;
+  align-self: end;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+}
+
+.confirmOrder {
+  background-color: #09814A;
+  color: white;
+  align-self: end;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+}
