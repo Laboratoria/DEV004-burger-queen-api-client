@@ -1,0 +1,219 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+button{
+    font-weight: bold;
+    font-size: 30px;
+    
+}
+p{
+    font-size: 30px;
+    text-align: left;
+    background-color: aqua;
+}
+ion-icon[name="add-outline"] {
+    font-size: 40px; /* Modifica el tamaño del icono "+" */
+    color: black; /* Cambia el color del icono "+" */
+    margin: 0%;
+  }
+  
+  ion-icon[name="remove-outline"] {
+    font-size: 40px; /* Modifica el tamaño del icono "-" */
+    color: black; /* Cambia el color del icono "-" */
+     /* Cambia el color de fondo del icono "-" */
+    /* Agrega un borde al icono "-" */
+    margin: 0;
+  }
+  .Container-decrease{
+    width: 90px;
+    height: 55px;
+    background-color: #FFD966;
+    border: 1px solid black;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    margin-left: 0%;
+    margin-top: 10%;
+    border-radius: 15px;
+    
+  }
+  .Container-increase{
+    background-color: #FFD966;
+    width: 90px;
+    height: 55px;
+    display: flex;
+    justify-content: center; /* Centra horizontalmente el icono "-" */
+    align-items: center; 
+    margin-right: 25%;
+    border: 1px solid black;
+    margin-top: 10%;
+    border-radius: 15px;
+
+
+
+   
+  }
+  .buttonGroup{
+    display: flex;
+    margin-bottom: 4%;
+    justify-content: space-between;
+    
+}
+
+.squareMenu{
+    display: flex;
+  background-color: white;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: -10%;
+ 
+}
+.ContainerOrderCliente{
+    display: flex;
+    flex-direction: row;
+    background-color: violet;
+    margin-left: 0%;
+    width: 720px;
+    height: 850px;
+    margin-top: 0;
+
+}
+.containerProducts{
+    justify-content: left; 
+    background-color:antiquewhite;
+    display: flex;
+    flex-direction: column;
+    height: 95%;
+   }
+   
+   .buttonContainer{
+    display: flex;
+  background-color: green;
+  margin: 0;
+  padding: 0;
+  width: 60%;
+  height: 90px;
+  justify-content: space-between;
+  
+}
+
+
+.containerCard{
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    background-color: #F4B183;
+    width: 60%;
+    height: 400px;
+    margin-top: 3%;
+    align-items: center;
+    border-radius: 20px;
+} 
+
+.productImage{
+    width: 30%;
+    align-items: center;
+    margin: 2%;
+    margin-bottom: 0%;
+}
+.productName{
+    
+    font-size: 150%;
+    text-align: center;
+    margin: 2%;
+    margin-top: 5%;
+    font-weight: bolder;
+}
+.productPrice{
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: 2%;
+}
+
+h2{
+    margin: 5%;
+    
+}
+.buttonMenu{
+    background-color: blueviolet;
+    width: 220px;
+    height: 62px;
+    border-radius:20px;
+    background-color: #F4B183;
+    font-weight: bold;
+    font-size: 30px;
+    margin: 5%;
+}
+.containerOrder{
+    display: flex;
+    background-color: #F4B183;
+    width: 90%;
+    height: 405px;
+    margin:2%;
+    margin-bottom: 2%;
+    border-radius: 20px;
+    justify-content: center;
+}
+.order{
+    display: flex;
+    background-color: #FFF2CC;
+    width: 95%;
+    height: 380px;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    border-radius: 20px;
+}
+
+/*
+.clientContainer{
+display: flex;
+flex-direction: column;
+margin-top: 5%;
+align-items: center;
+justify-content: center;
+margin-left: 6%;
+
+}
+.client{
+    font-size:150%;
+    margin: 5%;
+    font-weight: 600;
+}
+.nameClientInput{
+width: 200px;
+height: 50px;
+border-radius: 10px;
+}
+.labelClient{
+    margin-bottom: 8%;
+    font-weight: bold;
+    font-size: 25px;
+    
+}
+.line{
+    background-color: rgb(155, 17, 17);
+    width: 3px;
+    height: 380px;
+    margin-left: 8%;
+}
+
+.sentToCook{
+    display: flex;
+    justify-content: center;
+     align-items: center;
+    flex-direction: column;
+    background-color:#FFD966;
+    width: 80%;
+    height: 20%;
+    border-radius: 20px;
+    margin-top: 70%;
+    margin-left: 8%;
+       
+    
+}
+
+
+*/
