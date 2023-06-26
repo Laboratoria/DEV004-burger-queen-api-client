@@ -1,0 +1,41 @@
+.mainContainer{
+  display: grid;
+  grid-template-columns: 35% 65%;
+  margin: 10%;
+}
+
+.logoEdit {
+  width: -webkit-fill-available;
+}
+
+.containerEdit {
+  background-color:#FDEDD5;
+  flex-direction: column;
+  padding: 10%;
+  justify-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  display: flex;
+}
+
+.formEdit {
+  display: flex;
+  flex-direction: column;
+}
+
+.boxEdit {
+  display: flex;
+  flex-direction: row;
+}
+.btnEdit {
+  cursor: pointer;
+  margin: 10%;
+  background-color: #8cc63f; 
+  border-radius: 10px;
+  padding: 5px;
+  font-size: 100%;
+  cursor: pointer; 
+}
+.btnEdit:hover{
+  background-color: #FDEDD5;
+}
