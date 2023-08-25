@@ -1,0 +1,166 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+button{
+    font-weight: bold;
+    font-size: 30px;
+    
+}
+p{
+    font-size: 30px;
+    text-align: left;
+    background-color: aqua;
+}
+
+.squareMenu{
+    display: flex;
+  background-color: white;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: -10%;
+ 
+}
+.ContainerOrderCliente{
+    display: flex;
+    flex-direction: row;
+    
+    margin-left: -25%;
+
+}
+.containerProducts{
+    justify-content: left; 
+    background-color: red;
+    display: flex;
+    flex-direction: column;
+   }
+   .containerPrice{
+    font-size: x-large;
+    margin:0%;
+    display: flex;
+    flex-direction: column;
+}
+.containerCard{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #F4B183;
+    width: 30%;
+    height: 150px;
+    margin-top: 1%;
+    margin-left: 0%;
+    margin-right:0% ;
+    margin-bottom:0% ;
+    align-items: center;
+    border-radius: 20px; 
+} .Price{
+    margin-top: 5%;
+    background-color: blueviolet;
+}
+
+.productImage{
+    width: 50%;
+    align-items: center;
+    margin: 3%;
+}
+.productName{
+    
+    font-size: 120%;
+    text-align: center;
+    margin: 2%;
+    margin-top: 8%;
+}
+.containerimageName{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 8%;
+}
+h2{
+    margin: 5%;
+    
+}
+.buttonMenu{
+    background-color: blueviolet;
+    width: 220px;
+    height: 62px;
+    border-radius:20px;
+    background-color: #F4B183;
+    font-weight: bold;
+    font-size: 30px;
+    margin: 5%;
+}
+.containerOrder{
+    display: flex;
+    background-color: #F4B183;
+    width: 90%;
+    height: 405px;
+    margin:2%;
+    margin-bottom: 2%;
+    border-radius: 20px;
+    justify-content: center;
+}
+.order{
+    display: flex;
+    background-color: #FFF2CC;
+    width: 95%;
+    height: 380px;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    border-radius: 20px;
+}
+.itemsOrder{
+    font-size:130%;
+    margin-left: 3%;
+    margin-right: 2%;
+}
+.clientContainer{
+display: flex;
+flex-direction: column;
+margin-top: 5%;
+align-items: center;
+justify-content: center;
+margin-left: 6%;
+
+}
+.client{
+    font-size:150%;
+    margin: 5%;
+    font-weight: 600;
+}
+.nameClientInput{
+width: 200px;
+height: 50px;
+border-radius: 10px;
+}
+.labelClient{
+    margin-bottom: 8%;
+    font-weight: bold;
+    font-size: 25px;
+    
+}
+.line{
+    background-color: rgb(155, 17, 17);
+    width: 3px;
+    height: 380px;
+    margin-left: 8%;
+}
+
+.sentToCook{
+    display: flex;
+    justify-content: center;
+     align-items: center;
+    flex-direction: column;
+    background-color:#FFD966;
+    width: 80%;
+    height: 20%;
+    border-radius: 20px;
+    margin-top: 70%;
+    margin-left: 8%;
+       
+    
+}
+
+
